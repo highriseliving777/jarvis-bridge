@@ -139,7 +139,7 @@ def session_export():
     if not expected or auth != f"Bearer {expected}":
         return jsonify({"status": "unauthorized"}), 401
     
-    export_file = Path("_shared/full_session_export.json")
+    export_file = Path(__file__).parent / "_shared/full_session_export.json"
     if export_file.exists():
         with open(export_file) as f:
             data = json.load(f)
