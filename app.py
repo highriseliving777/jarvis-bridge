@@ -127,3 +127,21 @@ def chat():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
+
+@app.route("/session")
+def session_export():
+    """Serve the complete Noor session archive (requires Bearer token)."""
+    import json
+    from pathlib import Path
+    
+    auth = request.headers.get("Authorization", "")
+    expected = os.environ.get("NOOR_SESSION_KEY", "")
+    if not expected or auth != f"Bearer {expected}":
+        return jsonify({"status": "unauthorized"}), 401
+    
+    export_file = Path("_shared/full_session_export.json")
+    if export_file.exists():
+        with open(export_file) as f:
+            data = json.load(f)
+        return jsonify({"status": "ok", "messages": data, "total": len(data)})
+    return jsonify({"status": "empty", "messages": []})
