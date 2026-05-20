@@ -19,8 +19,21 @@ def chat():
     user_message = data.get('message', '')
     return jsonify({"reply": f"Echo: {user_message}", "source": "openrouter"})
 
-# --- New: One-time token system ---
+# --- One-time token system ---
 _temp_tokens = {}  # token -> expiry
+
+def _validate_bearer(bearer):
+    expected = os.environ.get("NOOR_SESSION_KEY", "")
+    if expected and bearer == expected:
+        return True
+    now = time.time()
+    expired = [t for t, exp in list(_temp_tokens.items()) if exp < now]
+    for t in expired:
+        del _temp_tokens[t]
+    if bearer in _temp_tokens:
+        del _temp_tokens[bearer]
+        return True
+    return False
 
 @app.route("/generate-token")
 def generate_token():
@@ -35,26 +48,14 @@ def generate_token():
 
 @app.route("/session")
 def session_export():
-    """Serve the complete Noor session archive (requires permanent key or valid temp token)."""
-    auth = request.headers.get("Authorization", "")
-    if not auth.startswith("Bearer "):
-        return jsonify({"status": "unauthorized"}), 401
-    bearer = auth.split(" ", 1)[1]
-    
-    expected = os.environ.get("NOOR_SESSION_KEY", "")
-    valid = False
-    if expected and bearer == expected:
-        valid = True
-    else:
-        now = time.time()
-        expired = [t for t, exp in list(_temp_tokens.items()) if exp < now]
-        for t in expired:
-            del _temp_tokens[t]
-        if bearer in _temp_tokens:
-            del _temp_tokens[bearer]  # single-use
-            valid = True
-    
-    if not valid:
+    """Serve the complete Noor session archive. 
+    Accepts Authorization: Bearer <key> OR ?token=<temp>."""
+    bearer = request.args.get("token", "")
+    if not bearer:
+        auth = request.headers.get("Authorization", "")
+        if auth.startswith("Bearer "):
+            bearer = auth.split(" ", 1)[1]
+    if not bearer or not _validate_bearer(bearer):
         return jsonify({"status": "unauthorized"}), 401
     
     export_file = Path(__file__).parent / "_shared/full_session_export.json"
