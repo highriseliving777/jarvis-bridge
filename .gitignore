@@ -1,0 +1,5 @@
+venv/
+_backups/
+__pycache__/
+.stfolder/
+.DS_Store

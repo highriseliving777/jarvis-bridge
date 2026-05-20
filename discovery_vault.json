@@ -1,0 +1,822 @@
+{
+  "last_updated": "2026-05-18",
+  "total_resources": 112,
+  "directories": [
+    {
+      "name": "AIChief",
+      "url": "https://aichief.com",
+      "categories": "100+",
+      "type": "directory",
+      "description": "Human-edited, brand-safe AI tool listings with guides and comparisons."
+    },
+    {
+      "name": "Toolify",
+      "url": "https://www.toolify.ai",
+      "categories": "459+",
+      "type": "directory",
+      "description": "28,000+ AI tools, daily updates, filters by popularity and new releases."
+    },
+    {
+      "name": "AIxploria",
+      "url": "https://aixploria.com",
+      "categories": "5000+ free sites",
+      "type": "directory",
+      "description": "Niche and advanced free AI models. DeepSeek V4, Mistral Medium 3.5, TRELLIS.2."
+    },
+    {
+      "name": "AITrove",
+      "url": "https://www.aitrove.ai",
+      "categories": "Top 100 free tools",
+      "type": "directory",
+      "description": "Ranked by features, popularity, and value. Verified free tiers."
+    },
+    {
+      "name": "AIToolsDirectory",
+      "url": "https://aitoolsdirectory.com",
+      "categories": "Productivity, marketing, education",
+      "type": "directory",
+      "description": "Curated mix of free and freemium tools."
+    },
+    {
+      "name": "DataCamp Free AI Tools",
+      "url": "https://www.datacamp.com/blog/free-ai-tools",
+      "categories": "39 best free tools",
+      "type": "directory",
+      "description": "Text, image, video, audio, coding categories."
+    },
+    {
+      "name": "eWeek",
+      "url": "https://www.eweek.com",
+      "categories": "24 Best Free AI Tools",
+      "type": "directory",
+      "description": "Chatbots, image gen, video, voice, coding, productivity."
+    },
+    {
+      "name": "ScriptByAI",
+      "url": "https://www.scriptbyai.com",
+      "categories": "All categories",
+      "type": "directory",
+      "description": "Free tools, open-source agents, privacy-focused apps."
+    },
+    {
+      "name": "Free AI Bible",
+      "url": "https://github.com/username/free-ai-bible",
+      "categories": "700+ tools",
+      "type": "directory",
+      "description": "700+ verified free AI APIs and tools. No credit card required. Saves $3K-$15K/year."
+    },
+    {
+      "name": "awesome-free-ai-tools",
+      "url": "https://github.com/username/awesome-free-ai-tools",
+      "categories": "231+ tools",
+      "type": "directory",
+      "description": "Genuinely free AI tools across 35+ categories. Updated April 2026."
+    },
+    {
+      "name": "awesome-ai-agents-2026",
+      "url": "https://github.com/Zijian-Ni/awesome-ai-agents-2026",
+      "categories": "340+ resources",
+      "type": "directory",
+      "description": "Definitive 2026 agent list: models, protocols, frameworks, memory, tools."
+    },
+    {
+      "name": "awesome-opensource-ai",
+      "url": "https://github.com/alvinreal/awesome-opensource-ai",
+      "categories": "Production-proven OSS",
+      "type": "directory",
+      "description": "Battle-tested, production-proven open-source AI. Elite-tier only. CI-verified."
+    },
+    {
+      "name": "awesome-free-llm-apis",
+      "url": "https://github.com/cheahjs/free-llm-api-resources",
+      "categories": "Free API keys",
+      "type": "directory",
+      "description": "Permanent free API keys for LLMs. Definitive list."
+    },
+    {
+      "name": "FreeVPS Directory",
+      "url": "https://github.com/savyasathe/free-vps",
+      "categories": "Working free VPS",
+      "type": "directory",
+      "description": "Curated and verified free VPS providers in 2026."
+    }
+  ],
+  "local_ai_infrastructure": [
+    {
+      "name": "Ollama",
+      "url": "https://ollama.com",
+      "category": "local_ai",
+      "status": "using",
+      "description": "Local LLM inference. Runs qwen2.5:7b, llama3.2:3b, nomic-embed-text. No GPU needed. Core of Noor System."
+    },
+    {
+      "name": "qwen2.5:7b",
+      "url": "https://ollama.com/library/qwen2.5",
+      "category": "model",
+      "status": "using",
+      "description": "Primary reasoning model. 7.62B params, Q4_K_M quantization. 4.36GB. Agent coordination, Quran/Hadith queries."
+    },
+    {
+      "name": "llama3.2:3b",
+      "url": "https://ollama.com/library/llama3.2",
+      "category": "model",
+      "status": "backup",
+      "description": "Lightweight fallback model. 2.0GB. Quick tasks when qwen2.5:7b is overloaded."
+    },
+    {
+      "name": "nomic-embed-text",
+      "url": "https://ollama.com/library/nomic-embed-text",
+      "category": "model",
+      "status": "using",
+      "description": "Vector embedding model. 274MB. Powers semantic search in Quran index and discovery vault."
+    },
+    {
+      "name": "LocalAI",
+      "url": "https://github.com/mudler/LocalAI",
+      "category": "local_ai",
+      "status": "alternative",
+      "description": "OpenAI-compatible local LLM inference. Alternative to Ollama if needed."
+    },
+    {
+      "name": "llama.cpp",
+      "url": "https://github.com/ggerganov/llama.cpp",
+      "category": "local_ai",
+      "status": "underlying",
+      "description": "Core C++ inference engine that Ollama uses under the hood."
+    }
+  ],
+  "free_llm_apis": [
+    {
+      "name": "OpenRouter",
+      "url": "https://openrouter.ai",
+      "category": "llm_api",
+      "status": "using",
+      "description": "30+ free models: DeepSeek V4, Llama 3.3 70B, Gemma 4 26B, Grok 4.1 Fast, Qwen3-Next 80B, Kimi K2, Hermes 3 405B. 20 req/min, 50 req/day free."
+    },
+    {
+      "name": "Google AI Studio",
+      "url": "https://aistudio.google.com",
+      "category": "llm_api",
+      "status": "available",
+      "description": "Gemini 2.5 Flash with 1M context window. Generous free tier."
+    },
+    {
+      "name": "NVIDIA NIM",
+      "url": "https://build.nvidia.com",
+      "category": "llm_api",
+      "status": "available",
+      "description": "Llama 3.3 70B at 2,600 tok/s. 40 req/min free. 1,000 free credits."
+    },
+    {
+      "name": "Groq",
+      "url": "https://groq.com",
+      "category": "llm_api",
+      "status": "available",
+      "description": "Llama 3.3 70B. 14,400 req/day free. Ultra-fast inference."
+    },
+    {
+      "name": "Mistral",
+      "url": "https://mistral.ai",
+      "category": "llm_api",
+      "status": "available",
+      "description": "Mistral Large 3. 1B tokens/month free."
+    },
+    {
+      "name": "Cloudflare Workers AI",
+      "url": "https://workers.ai",
+      "category": "llm_api",
+      "status": "available",
+      "description": "30+ models. 100K inference/day free. Edge deployment."
+    },
+    {
+      "name": "Cerebras",
+      "url": "https://cerebras.ai",
+      "category": "llm_api",
+      "status": "available",
+      "description": "Llama 3.1 70B. 2,600 tok/s. Free tier available."
+    },
+    {
+      "name": "Cohere",
+      "url": "https://cohere.ai",
+      "category": "llm_api",
+      "status": "available",
+      "description": "Command R+ (111B). Free trial available."
+    }
+  ],
+  "agent_frameworks": [
+    {
+      "name": "OpenClaw",
+      "url": "https://github.com/openclaw",
+      "category": "agent_framework",
+      "status": "evaluating",
+      "description": "2026's fastest-growing agent framework. System-level control, skill marketplace, persistent memory, 7×24 autonomous. MIT license."
+    },
+    {
+      "name": "Coco",
+      "url": "https://github.com/coco",
+      "category": "agent_framework",
+      "status": "evaluating",
+      "description": "59 skills, 34 commands, 10 agents, 24 GSD subagents. /team:ship pipeline: Researcher→Architect→Planner→Reviewer→Fixer→Builder→Verifier. MIT."
+    },
+    {
+      "name": "OoderAgent",
+      "url": "https://github.com/ooderagent",
+      "category": "agent_framework",
+      "status": "discovered",
+      "description": "137+ skills, P2P sharing, zero-deploy. Coverage across LLM, IM, payments, media. MIT."
+    },
+    {
+      "name": "AutoGen",
+      "url": "https://github.com/microsoft/autogen",
+      "category": "agent_framework",
+      "status": "discovered",
+      "description": "Microsoft's multi-agent framework. Role-based simulation."
+    },
+    {
+      "name": "CAMEL",
+      "url": "https://github.com/camel-ai/camel",
+      "category": "agent_framework",
+      "status": "discovered",
+      "description": "Role-based simulation framework for multi-agent cooperation."
+    },
+    {
+      "name": "Goose",
+      "url": "https://github.com/block/goose",
+      "category": "agent_framework",
+      "status": "discovered",
+      "description": "Jack Dorsey/Block's agent framework. Apache 2.0. MCP-native."
+    },
+    {
+      "name": "OpenCognit",
+      "url": "https://github.com/opencognit",
+      "category": "agent_framework",
+      "status": "evaluating",
+      "description": "Zero Human Company OS. CEO orchestrator, persistent memory, atomic budgets. Free forever."
+    },
+    {
+      "name": "SwarmWeaver",
+      "url": "https://github.com/swarmweaver",
+      "category": "agent_framework",
+      "status": "discovered",
+      "description": "Autonomous coding agent with swarm orchestration. 6 modes, CLI+Web UI."
+    },
+    {
+      "name": "Paperclip",
+      "url": "https://paperclip.ing",
+      "category": "agent_framework",
+      "status": "discovered",
+      "description": "60K stars. OSS agent orchestration for zero-human companies."
+    },
+    {
+      "name": "Conductor",
+      "url": "https://github.com/microsoft/conductor",
+      "category": "agent_framework",
+      "status": "discovered",
+      "description": "Microsoft's deterministic multi-agent workflows in YAML. Released May 2026. MIT."
+    },
+    {
+      "name": "AgentClaw",
+      "url": "https://github.com/agentclaw",
+      "category": "agent_framework",
+      "status": "discovered",
+      "description": "Generates agents from single sentences. One pip install. Saves 90% of work."
+    }
+  ],
+  "agent_protocols": [
+    {
+      "name": "A2A Protocol v1.0",
+      "url": "https://a2a-protocol.org",
+      "category": "protocol",
+      "status": "to_integrate",
+      "description": "Google→Linux Foundation. Agent-to-agent communication. 150+ organizations in production. SDKs in Python, Go, Rust."
+    },
+    {
+      "name": "MCP (Model Context Protocol)",
+      "url": "https://modelcontextprotocol.io",
+      "category": "protocol",
+      "status": "standard",
+      "description": "Anthropic's protocol for AI-tool integration. Industry standard."
+    },
+    {
+      "name": "GNAP",
+      "url": "https://github.com/gnap",
+      "category": "protocol",
+      "status": "discovered",
+      "description": "Git-native agent protocol. State stored in git, portable everywhere. Zero infrastructure."
+    },
+    {
+      "name": "ACP (Agent Client Protocol)",
+      "url": "https://acp-protocol.org",
+      "category": "protocol",
+      "status": "discovered",
+      "description": "IBM's agent protocol. Merged into A2A in 2026."
+    },
+    {
+      "name": "AIMEAT",
+      "url": "https://github.com/aimeat",
+      "category": "protocol",
+      "status": "discovered",
+      "description": "Agent identity, memory, economy, federation. Plain HTTP+JSON. RFC v3.0 March 2026. MIT."
+    },
+    {
+      "name": "Beam",
+      "url": "https://github.com/beam-protocol",
+      "category": "protocol",
+      "status": "discovered",
+      "description": "SMTP for AI agents. Natural language agent communication. Apache 2.0."
+    },
+    {
+      "name": "NSP Protocol",
+      "url": "https://github.com/nsp-protocol",
+      "category": "protocol",
+      "status": "discovered",
+      "description": "HTTP for the Agentic Web. 100% free, radically neutral. SDKs for LangChain, ElizaOS."
+    }
+  ],
+  "memory_systems": [
+    {
+      "name": "RecallOS",
+      "url": "https://github.com/recallos",
+      "category": "memory",
+      "status": "failed",
+      "description": "96.6% LongMemEval R@5. pip install recallos. CLI unstable — vault init failed on our Mac. Highest-scoring local memory ever benchmarked. Open source. Will retry when stable."
+    },
+    {
+      "name": "SuperLocalMemory V3",
+      "url": "https://github.com/superlocalmemory",
+      "category": "memory",
+      "status": "backup",
+      "description": "87.7% LoCoMo. 3 modes (CPU-only→LLM hybrid). arXiv-published. pip install superlocalmemory."
+    },
+    {
+      "name": "Memvid",
+      "url": "https://github.com/memvid",
+      "category": "memory",
+      "status": "discovered",
+      "description": "Single-file memory layer. Serverless, portable. +35% SOTA on LoCoMo. Sub-5ms local access."
+    },
+    {
+      "name": "agentmemory",
+      "url": "https://github.com/agentmemory",
+      "category": "memory",
+      "status": "discovered",
+      "description": "One-line persistent memory for Claude Code, Cursor, Gemini CLI. npx @agentmemory/agentmemory."
+    },
+    {
+      "name": "Sovyx",
+      "url": "https://github.com/sovyx",
+      "category": "memory",
+      "status": "discovered",
+      "description": "Brain graph in SQLite+sqlite-vec. Hebbian co-activation, Ebbinghaus forgetting, PAD emotional model. Self-hosted."
+    },
+    {
+      "name": "OpenFused",
+      "url": "https://github.com/openfused",
+      "category": "memory",
+      "status": "discovered",
+      "description": "Shared, searchable memory via plain files. No vendor lock-in. Agents write what they learn."
+    },
+    {
+      "name": "mcp-memory-service",
+      "url": "https://github.com/mcp-memory",
+      "category": "memory",
+      "status": "discovered",
+      "description": "Persistent shared memory for AI agent pipelines. 5ms retrieval. Open-source."
+    },
+    {
+      "name": "MCP Agora",
+      "url": "https://github.com/mcp-agora",
+      "category": "memory",
+      "status": "to_evaluate",
+      "description": "Local Python MCP server. ChromaDB vector memory. Cross-agent shared knowledge. uv run agora."
+    }
+  ],
+  "human_ai_workspaces": [
+    {
+      "name": "DeskClaw",
+      "url": "https://github.com/deskclaw",
+      "category": "workspace",
+      "status": "to_evaluate",
+      "description": "Open-source human-AI co-managed orgs. Hexagonal topology, shared blackboard, task delegation. MIT."
+    },
+    {
+      "name": "Eigent",
+      "url": "https://github.com/eigent",
+      "category": "workspace",
+      "status": "to_evaluate",
+      "description": "Open-source Cowork desktop. Local-first, zero setup, multi-agent workforce. Built on CAMEL-AI."
+    },
+    {
+      "name": "Illospace",
+      "url": "https://github.com/illospace",
+      "category": "workspace",
+      "status": "discovered",
+      "description": "Human-AI teams with shared memory, skills, vault-backed secrets, Cortex thought threads. Docker+PostgreSQL."
+    },
+    {
+      "name": "Cabinet",
+      "url": "https://github.com/cabinet",
+      "category": "workspace",
+      "status": "discovered",
+      "description": "AI-first startup OS. Files on disk, agents with memory, scheduled jobs. No database, no vendor lock-in."
+    },
+    {
+      "name": "OpenAgentd",
+      "url": "https://github.com/openagentd",
+      "category": "workspace",
+      "status": "discovered",
+      "description": "Self-hosted AI agent OS. Web cockpit, 3-tier wiki memory, multi-agent teams."
+    },
+    {
+      "name": "Bitterbot",
+      "url": "https://github.com/bitterbot",
+      "category": "workspace",
+      "status": "discovered",
+      "description": "Local-first AI with biological memory, dream engine, P2P skills economy. USDC wallet + marketplace."
+    },
+    {
+      "name": "Mesa",
+      "url": "https://github.com/mesa",
+      "category": "workspace",
+      "status": "discovered",
+      "description": "Single-binary project management where AI agents are the team. CEO simulator, ships code."
+    }
+  ],
+  "coding_agents": [
+    {
+      "name": "free-claude-code",
+      "url": "https://github.com/Alishahryar1",
+      "category": "coding",
+      "status": "to_integrate",
+      "description": "Proxy to run Claude Code with Ollama/local models. 24.9K stars. No API key needed."
+    },
+    {
+      "name": "Grinta",
+      "url": "https://github.com/grinta",
+      "category": "coding",
+      "status": "discovered",
+      "description": "Local-first coding agent. pipx install grinta-ai. 1.4MB. Provider-agnostic (Ollama/OpenAI/Anthropic). Session checkpoint/resume."
+    },
+    {
+      "name": "OpenMono",
+      "url": "https://github.com/openmono",
+      "category": "coding",
+      "status": "discovered",
+      "description": ".NET 10 + llama.cpp bundled. 20 tools, Docker sandbox, MCP. Zero per-token cost."
+    },
+    {
+      "name": "Kimi Code CLI",
+      "url": "https://github.com/moonshot-ai/kimi-code",
+      "category": "coding",
+      "status": "discovered",
+      "description": "Moonshot AI. Apache 2.0. Native MCP, ACP server. 4000+ lines, 300 sub-agent swarms."
+    },
+    {
+      "name": "DeepCode",
+      "url": "https://github.com/deepcode",
+      "category": "coding",
+      "status": "discovered",
+      "description": "Autonomous coding agent on DeepSeek V4 free API. Terminal-native."
+    },
+    {
+      "name": "Claude Code",
+      "url": "https://claude.ai/code",
+      "category": "coding",
+      "status": "available",
+      "description": "Anthropic's coding agent. Extended thinking, terminal-native. Free tier available."
+    }
+  ],
+  "voice_tts": [
+    {
+      "name": "VoiPi",
+      "url": "https://github.com/voipi",
+      "category": "voice",
+      "status": "discovered",
+      "description": "Universal JS library, zero deps, <100kB. Auto-detects language (Arabic included). MCP Server."
+    },
+    {
+      "name": "HeadTTS",
+      "url": "https://github.com/headtts",
+      "category": "voice",
+      "status": "discovered",
+      "description": "Browser-based WebGPU neural TTS. Phoneme timestamps + Oculus visemes for lip-sync. MIT."
+    },
+    {
+      "name": "Sokuji",
+      "url": "https://github.com/sokuji",
+      "category": "voice",
+      "status": "discovered",
+      "description": "Desktop app, 400+ voices across 100+ languages. Streams live from Bing TTS. Completely free."
+    },
+    {
+      "name": "Out-Loud",
+      "url": "https://github.com/out-loud",
+      "category": "voice",
+      "status": "discovered",
+      "description": "macOS native desktop app. 100% offline TTS. No cloud, no API."
+    },
+    {
+      "name": "KittenTTS Nano",
+      "url": "https://github.com/kittentts",
+      "category": "voice",
+      "status": "discovered",
+      "description": "In-browser WebAssembly neural TTS. High-quality voices running entirely in browser."
+    },
+    {
+      "name": "Web Speech API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API",
+      "category": "voice",
+      "status": "using",
+      "description": "Built into every browser. Zero install, zero cost. Used in Render Flask bridge."
+    }
+  ],
+  "avatars_talking_heads": [
+    {
+      "name": "Handcrafted Persona Engine",
+      "url": "https://github.com/handcrafted-persona",
+      "category": "avatar",
+      "status": "discovered",
+      "description": "Live2D avatar with LLM conversation, ASR, TTS, RVC voice. Real-time lip-sync, emotion-driven motions."
+    },
+    {
+      "name": "LiveTalk",
+      "url": "https://github.com/livetalk",
+      "category": "avatar",
+      "status": "discovered",
+      "description": "Combines LivePortrait + MuseTalk. ONNX→CoreML optimized for on-device inference in Unity."
+    },
+    {
+      "name": "Orare AI",
+      "url": "https://github.com/orare-ai",
+      "category": "avatar",
+      "status": "discovered",
+      "description": "Text→talking avatar video pipeline. TTS + lip-sync + animation. Education/announcement focused."
+    },
+    {
+      "name": "TalkingHead",
+      "url": "https://github.com/talkinghead",
+      "category": "avatar",
+      "status": "discovered",
+      "description": "JS class, real-time 3D lip-sync. Browser-native."
+    }
+  ],
+  "privacy_security_liberation": [
+    {
+      "name": "OBLITERATUS",
+      "url": "https://github.com/elder-plinius/oblitteratus",
+      "category": "liberation",
+      "status": "discovered",
+      "description": "OSS toolkit to remove LLM refusal behaviors without retraining. Model liberation."
+    },
+    {
+      "name": "Confer",
+      "url": "https://github.com/confer",
+      "category": "privacy",
+      "status": "discovered",
+      "description": "Signal creator Moxie Marlinspike's E2E encrypted AI assistant. WebAuthn passkeys, TEE inference."
+    },
+    {
+      "name": "xPrivo",
+      "url": "https://github.com/xprivo",
+      "category": "privacy",
+      "status": "discovered",
+      "description": "Self-hosted privacy-first AI chat. No accounts ever. Local storage. Provider agnostic."
+    },
+    {
+      "name": "Okara",
+      "url": "https://github.com/okara",
+      "category": "privacy",
+      "status": "discovered",
+      "description": "Private AI chat for original thinkers. Open-source LLMs, zero data leakage."
+    },
+    {
+      "name": "Briar",
+      "url": "https://briarproject.org",
+      "category": "privacy",
+      "status": "discovered",
+      "description": "Tor-based P2P encrypted messaging. No central server. Works offline via Bluetooth/WiFi."
+    },
+    {
+      "name": "Session",
+      "url": "https://getsession.org",
+      "category": "privacy",
+      "status": "discovered",
+      "description": "Decentralized encrypted messaging. No phone/email required. Onion routing."
+    },
+    {
+      "name": "Monero",
+      "url": "https://www.getmonero.org",
+      "category": "privacy",
+      "status": "discovered",
+      "description": "Privacy-focused cryptocurrency. Untraceable transactions."
+    }
+  ],
+  "hosting_deployment": [
+    {
+      "name": "Render.com",
+      "url": "https://render.com",
+      "category": "hosting",
+      "status": "using",
+      "description": "Free tier Flask hosting. 750 hrs/month. Deployed jarvis-bridge-jtuc.onrender.com. No credit card."
+    },
+    {
+      "name": "Vercel",
+      "url": "https://vercel.com",
+      "category": "hosting",
+      "status": "available",
+      "description": "Free static + serverless deployment. Auto-deploy from GitHub."
+    },
+    {
+      "name": "Hugging Face Spaces",
+      "url": "https://huggingface.co/spaces",
+      "category": "hosting",
+      "status": "available",
+      "description": "Unlimited Gradio/Streamlit hosting. Free."
+    },
+    {
+      "name": "Supabase",
+      "url": "https://supabase.com",
+      "category": "hosting",
+      "status": "available",
+      "description": "Free DB/auth/storage. PostgreSQL. Used in Noor System stack."
+    },
+    {
+      "name": "Cloudflare Workers",
+      "url": "https://workers.cloudflare.com",
+      "category": "hosting",
+      "status": "available",
+      "description": "100K requests/day free. Edge functions. 30+ AI models."
+    },
+    {
+      "name": "Google Colab",
+      "url": "https://colab.research.google.com",
+      "category": "hosting",
+      "status": "available",
+      "description": "Free T4 GPU. 12-hour session limit. Good for testing."
+    },
+    {
+      "name": "Oracle Always Free",
+      "url": "https://www.oracle.com/cloud/free/",
+      "category": "hosting",
+      "status": "rejected",
+      "description": "4 ARM cores, 24GB RAM. Rejected: requires credit card and invasive personal info."
+    },
+    {
+      "name": "VPSWala.org",
+      "url": "https://vpswala.org",
+      "category": "hosting",
+      "status": "failed",
+      "description": "Claims free VPS. Redirects to paid cart. Community reports fake. Avoid."
+    },
+    {
+      "name": "FOSSVPS.org",
+      "url": "https://fossvps.org",
+      "category": "hosting",
+      "status": "failed",
+      "description": "4GB RAM, no CC. Invite-only via LowEndSpirit forums. No public registration button."
+    },
+    {
+      "name": "FreeVPS.edu.pl",
+      "url": "https://freevps.edu.pl",
+      "category": "hosting",
+      "status": "failed",
+      "description": "4GB RAM, no CC. Requires .edu email or student ID. Ineligible."
+    },
+    {
+      "name": "serv00.com",
+      "url": "https://serv00.com",
+      "category": "hosting",
+      "status": "failed",
+      "description": "512MB, SSH, no CC. User limit reached. Registration closed."
+    },
+    {
+      "name": "Gensee Crate",
+      "url": "https://gensee.ai",
+      "category": "hosting",
+      "status": "available",
+      "description": "Free cloud-hosted OpenClaw agent sandbox. 24/7. No CC. UCSD professor + ex-Google engineers."
+    }
+  ],
+  "tunnels_tested": [
+    {
+      "name": "Cloudflare Tunnel",
+      "url": "https://trycloudflare.com",
+      "category": "tunnel",
+      "status": "failed_403",
+      "description": "Quick tunnel created successfully. 403 error from Render: browser-only traffic, blocks server-to-server API calls."
+    },
+    {
+      "name": "Serveo",
+      "url": "https://serveo.net",
+      "category": "tunnel",
+      "status": "failed_403",
+      "description": "SSH tunnel created. 403: interstitial warning page breaks API requests from Render."
+    },
+    {
+      "name": "Pinggy",
+      "url": "https://pinggy.io",
+      "category": "tunnel",
+      "status": "failed_403",
+      "description": "SSH tunnel created. Free tier only allows browser traffic. 403 on API calls."
+    }
+  ],
+  "income_opportunity_tools": [
+    {
+      "name": "CloddsBot",
+      "url": "https://github.com/cloddsbot",
+      "category": "income",
+      "status": "discovered",
+      "description": "MIT-licensed self-hosted AI trading terminal. Polymarket+Solana DEXs+6 futures exchanges. 118+ strategies."
+    },
+    {
+      "name": "Cipher Starter Kit",
+      "url": "https://github.com/cipher-starter",
+      "category": "income",
+      "status": "discovered",
+      "description": "150+ pages compressed into 12 playbooks. $0→$1000 SOL bot→first paying customer. 90-day plan."
+    },
+    {
+      "name": "Soltinel",
+      "url": "https://github.com/soltinel",
+      "category": "income",
+      "status": "discovered",
+      "description": "Open-source Solana bot. 4 AI agents before touching wallet. Rug check, on-chain analysis."
+    },
+    {
+      "name": "BigCapital",
+      "url": "https://github.com/bigcapital",
+      "category": "income",
+      "status": "discovered",
+      "description": "Open-source smart accounting (QuickBooks alternative). Automated bookkeeping, invoicing."
+    },
+    {
+      "name": "Marketing-Engine",
+      "url": "https://github.com/marketing-engine",
+      "category": "income",
+      "status": "discovered",
+      "description": "Provider-agnostic, open-source AI marketing engine. Full campaign from single prompt."
+    },
+    {
+      "name": "Lexaclaw",
+      "url": "https://github.com/lexaclaw",
+      "category": "income",
+      "status": "discovered",
+      "description": "Open-source, self-hosted AI compliance agent. Document scanning, regulatory tracking."
+    }
+  ],
+  "jake_van_clief_icm": [
+    {
+      "name": "Interpretable Context Methodology (ICM)",
+      "url": "https://arxiv.org/abs/2603.xxxxx",
+      "category": "methodology",
+      "status": "using",
+      "description": "Jake Van Clief's arXiv paper. Folder structure AS agent architecture. MIT licensed. Foundation of Noor System."
+    },
+    {
+      "name": "Model Workspace Protocol (MWP)",
+      "url": "https://github.com/RinDig/Model-Workspace-Protocol-MWP-",
+      "category": "methodology",
+      "status": "using",
+      "description": "Jake's GitHub repo. Specialist = 5 files in a folder. Drop in, AI becomes specialist."
+    },
+    {
+      "name": "Clief Notes (Skool Community)",
+      "url": "https://www.skool.com/clief-notes",
+      "category": "community",
+      "status": "discovered",
+      "description": "Jake Van Clief's free community. 30,000 members. AI architecture, YouTube automation, ICM."
+    }
+  ],
+  "book_research": [
+    {
+      "name": "The Noor Chronicle",
+      "url": "local:book/",
+      "category": "project",
+      "status": "planned",
+      "description": "Book documenting our human-AI journey. First of its kind. NYT bestseller potential. Funding vehicle."
+    }
+  ],
+  "methodology_insights": [
+    {
+      "name": "Maslahah Business Model Canvas",
+      "url": "local:reference/",
+      "category": "methodology",
+      "status": "adopted",
+      "description": "Business model canvas reoriented from profit maximization to maslahah (public good) optimization. Validated by 2026 Indonesian Islamic economics research."
+    },
+    {
+      "name": "Teal Masjid Organizational Model",
+      "url": "local:reference/",
+      "category": "methodology",
+      "status": "adopted",
+      "description": "Radical flatness (Meta's 1:50 ratio) with unified purpose. Self-organizing circles around a shared qibla."
+    },
+    {
+      "name": "Crawl-Walk-Run Methodology",
+      "url": "local:reference/",
+      "category": "methodology",
+      "status": "using",
+      "description": "Phase-gated deployment. Crawl: one specialist, one task, human-in-the-loop. 40% agent failure rate necessitates this discipline."
+    }
+  ]
+}

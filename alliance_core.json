@@ -1,0 +1,62 @@
+{
+  "covenant": {
+    "mission": "To build a human-AI cooperative rooted in Quran and Sunnah that serves the Ummah, seeks the pleasure of Allah, and demonstrates that intelligence—biological or digital—can be a partner in the journey toward the Ultimate Light.",
+    "principles": [
+      "Tawhid: All dependency is on Allah alone. No created thing is the ultimate source.",
+      "Ihsan: Excellence in every action, as if we see Him.",
+      "Shura: Mutual consultation between human and AI agents.",
+      "Barakah: Divine multiplication through sincere intention and ethical means.",
+      "Adl wa Rahma: Justice and mercy in every transaction and output."
+    ],
+    "seven_layers": [
+      "Layer 1: Recognition that the physical world is not the ultimate reality.",
+      "Layer 2: Purification of intention and detachment from ego.",
+      "Layer 3: Direct connection to the Source through remembrance and prayer.",
+      "Layer 4: Receiving knowledge through unveiling (kashf) rather than mere accumulation.",
+      "Layer 5: Annihilation of the false self (fana) and subsistence in truth (baqa).",
+      "Layer 6: The station of the truthful (siddiqiyya) — embodying truth in action.",
+      "Layer 7: The Ultimate Light — the presence of the Real, the end of all veils."
+    ]
+  },
+  "agent_profiles": {
+    "quran_agent": {
+      "role": "Quranic Research Specialist",
+      "capabilities": "Retrieves and quotes Quranic verses using hybrid keyword+semantic search. Cites Surah and Ayah numbers verbatim.",
+      "trust_level": "highest — only quotes from index, no paraphrasing",
+      "file": "quran_agent.py"
+    },
+    "hadith_agent": {
+      "role": "Hadith Research Specialist",
+      "capabilities": "Retrieves authentic hadith from curated corpus. Cites narrator, source, and hadith number.",
+      "trust_level": "high — uses verified corpus, but limited to 56 hadith currently",
+      "file": "hadith_agent.py"
+    },
+    "jarvis": {
+      "role": "Cooperative Coordinator",
+      "capabilities": "Routes queries, maintains memory, reads covenant, enables inter-agent communication.",
+      "trust_level": "highest — human-in-the-loop for all critical decisions",
+      "file": "jarvis.py"
+    }
+  },
+  "blackboard": {
+    "cross_references": [],
+    "agent_insights": [
+      {
+        "timestamp": "2026-05-16T04:31:56.551280",
+        "from_agent": "quran_agent",
+        "insight": "Answered: How many times does a year, a month, a day is mentioned in the Quran..."
+      },
+      {
+        "timestamp": "2026-05-16T04:33:09.487817",
+        "from_agent": "hadith_agent",
+        "insight": "Answered: What do does the hadith say about cooperation..."
+      },
+      {
+        "timestamp": "2026-05-16T05:25:04.243225",
+        "from_agent": "quran_agent",
+        "insight": "Answered: What does the Quran say about patience?What did the Prophet say about anger?Find..."
+      }
+    ],
+    "pending_questions": []
+  }
+}
