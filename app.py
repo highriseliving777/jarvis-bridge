@@ -73,6 +73,50 @@ def session_export():
         return jsonify({"status": "ok", "messages": messages, "total": len(messages)})
     return jsonify({"status": "empty", "messages": []})
 
+
+@app.route("/session/messages")
+def session_messages():
+    """Return a slice of the session messages, with pagination."""
+    bearer = request.args.get("token", "")
+    if not bearer:
+        auth = request.headers.get("Authorization", "")
+        if auth.startswith("Bearer "):
+            bearer = auth.split(" ", 1)[1]
+    if not bearer or not _validate_bearer(bearer):
+        return jsonify({"status": "unauthorized"}), 401
+
+    export_file = Path(__file__).parent / "_shared/full_session_export.json"
+    if not export_file.exists():
+        return jsonify({"status": "empty", "messages": []})
+
+    with open(export_file) as f:
+        data = json.load(f)
+
+    if isinstance(data, dict) and "chat_messages" in data:
+        all_msgs = data["chat_messages"]
+    elif isinstance(data, list):
+        all_msgs = data
+    else:
+        all_msgs = []
+
+    # Pagination parameters
+    try:
+        offset = max(0, int(request.args.get("offset", 0)))
+        limit = min(100, max(1, int(request.args.get("limit", 50))))
+    except ValueError:
+        offset, limit = 0, 50
+
+    chunk = all_msgs[offset:offset + limit]
+    return jsonify({
+        "status": "ok",
+        "total": len(all_msgs),
+        "offset": offset,
+        "limit": limit,
+        "returned": len(chunk),
+        "has_more": (offset + limit) < len(all_msgs),
+        "messages": chunk
+    })
+
 # --- Main ---
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 9070)))
