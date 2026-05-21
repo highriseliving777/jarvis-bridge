@@ -117,6 +117,56 @@ def session_messages():
         "messages": chunk
     })
 
+
+@app.route("/session/text")
+def session_text():
+    """Return the complete session as a single text block for AI digestion."""
+    bearer = request.args.get("token", "")
+    if not bearer:
+        auth = request.headers.get("Authorization", "")
+        if auth.startswith("Bearer "):
+            bearer = auth.split(" ", 1)[1]
+    if not bearer or not _validate_bearer(bearer):
+        return jsonify({"status": "unauthorized"}), 401
+
+    export_file = Path(__file__).parent / "_shared/full_session_export.json"
+    if not export_file.exists():
+        return "No session data found.", 404
+
+    with open(export_file) as f:
+        data = json.load(f)
+
+    if isinstance(data, dict) and "chat_messages" in data:
+        all_msgs = data["chat_messages"]
+    elif isinstance(data, list):
+        all_msgs = data
+    else:
+        all_msgs = []
+
+    # Build a clean text transcript
+    lines = []
+    lines.append(f"=== NOOR SYSTEM SESSION ARCHIVE ===\n")
+    lines.append(f"Total messages: {len(all_msgs)}\n")
+
+    # Include the session brief if it exists
+    brief_file = Path(__file__).parent / "_shared/SESSION_BRIEF.md"
+    if brief_file.exists():
+        lines.append("--- SESSION BRIEF ---")
+        lines.append(brief_file.read_text())
+        lines.append("--- END BRIEF ---\n")
+
+    lines.append("--- FULL TRANSCRIPT ---\n")
+    for i, msg in enumerate(all_msgs):
+        role = msg.get("role", "unknown").upper()
+        content = msg.get("content", "")
+        if content:
+            lines.append(f"[{i}] {role}: {content}\n")
+
+    full_text = "\n".join(lines)
+    
+    # Count actual content length for logging
+    return full_text, 200, {"Content-Type": "text/plain; charset=utf-8"}
+
 # --- Main ---
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 9070)))
