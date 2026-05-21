@@ -43,7 +43,7 @@ def generate_token():
     if not expected or auth != f"Bearer {expected}":
         return jsonify({"status": "unauthorized"}), 401
     token = secrets.token_hex(16)
-    _temp_tokens[token] = time.time() + 300  # 5 minutes
+    _temp_tokens[token] = time.time() + 600  # 10 minutes, reusable
     return jsonify({"token": token})
 
 @app.route("/session")
