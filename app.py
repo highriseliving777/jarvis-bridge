@@ -49,7 +49,8 @@ def generate_token():
 @app.route("/session")
 def session_export():
     """Serve the complete Noor session archive. 
-    Accepts Authorization: Bearer <key> OR ?token=<temp>."""
+    Accepts Authorization: Bearer <key> OR ?token=<temp>.
+    Handles both flat array and DeepSeek chat_messages format."""
     bearer = request.args.get("token", "")
     if not bearer:
         auth = request.headers.get("Authorization", "")
@@ -62,7 +63,14 @@ def session_export():
     if export_file.exists():
         with open(export_file) as f:
             data = json.load(f)
-        return jsonify({"status": "ok", "messages": data, "total": len(data)})
+        # Extract the actual messages array
+        if isinstance(data, dict) and "chat_messages" in data:
+            messages = data["chat_messages"]
+        elif isinstance(data, list):
+            messages = data
+        else:
+            messages = []
+        return jsonify({"status": "ok", "messages": messages, "total": len(messages)})
     return jsonify({"status": "empty", "messages": []})
 
 # --- Main ---
