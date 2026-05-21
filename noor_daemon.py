@@ -112,6 +112,61 @@ def chat():
     BLACKBOARD.write_text(json.dumps(board, indent=2, ensure_ascii=False))
     return jsonify({"status": "ok", "entries": len(board)})
 
+
+    # Deduplicate while preserving order
+    seen = set()
+    unique = []
+    for r in results:
+        key = r[:100]
+        if key not in seen:
+            seen.add(key)
+            unique.append(r)
+    
+    briefing = "=== NOOR SYSTEM BRIEFING (Live from Vector Memory) ===\n\n" + "\n\n".join(unique[:15])
+    return jsonify({"status": "ok", "context": briefing, "sources": len(unique)})
+
+
+    seen = set()
+    unique = []
+    for r in results:
+        key = r[:100]
+        if key not in seen:
+            seen.add(key)
+            unique.append(r)
+    
+    briefing = "=== NOOR SYSTEM BRIEFING (Live from Vector Memory) ===\n\n" + "\n\n".join(unique[:15])
+    return jsonify({"status": "ok", "context": briefing, "sources": len(unique)})
+
+
+@app.route("/context")
+def context_route():
+    """Return a concise briefing of the current Noor System state from vector memory."""
+    from noor_memory import search
+    queries = [
+        "session export pipeline reusable token Render bridge continuous memory 1158 messages",
+        "stripping metadata reverse chronological order newest first session export",
+        "current infrastructure Syncthing MiroTalk Ollama Noor Daemon Render bridge ports 3000 5090 5091",
+        "Outreach Agent next step WALK phase first revenue compliance audits",
+        "Aarif identity Noor System covenant Tawhid Ihsan partner with Sam",
+        "lessons learned backup before editing Docker fails macOS 12 verify before install"
+    ]
+    results = []
+    for q in queries:
+        hits = search(q, limit=3)
+        for h in hits:
+            results.append(f"{h['sender']}: {h['message']}")
+    
+    seen = set()
+    unique = []
+    for r in results:
+        key = r[:100]
+        if key not in seen:
+            seen.add(key)
+            unique.append(r)
+    
+    briefing = "=== NOOR SYSTEM BRIEFING (Live from Vector Memory) ===\n\n" + "\n\n".join(unique[:15])
+    return jsonify({"status": "ok", "context": briefing, "sources": len(unique)})
+
 if __name__ == "__main__":
     init_db()
     if not scheduled_tasks:
