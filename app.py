@@ -1,8 +1,23 @@
 import os, json, secrets, time
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 from pathlib import Path
 
 app = Flask(__name__)
+
+# --- Reusable token system ---
+_temp_tokens = {}  # token -> expiry (10 min, reusable)
+
+def _validate_bearer(bearer: str) -> bool:
+    """Check permanent key OR valid temp token. Tokens are NOT consumed."""
+    expected = os.environ.get("NOOR_SESSION_KEY", "")
+    if expected and bearer == expected:
+        return True
+    now = time.time()
+    # remove expired tokens
+    expired = [t for t, exp in list(_temp_tokens.items()) if exp < now]
+    for t in expired:
+        del _temp_tokens[t]
+    return bearer in _temp_tokens
 
 # --- Existing routes ---
 @app.route('/')
@@ -19,25 +34,9 @@ def chat():
     user_message = data.get('message', '')
     return jsonify({"reply": f"Echo: {user_message}", "source": "openrouter"})
 
-# --- One-time token system ---
-_temp_tokens = {}  # token -> expiry
-
-def _validate_bearer(bearer):
-    expected = os.environ.get("NOOR_SESSION_KEY", "")
-    if expected and bearer == expected:
-        return True
-    now = time.time()
-    expired = [t for t, exp in list(_temp_tokens.items()) if exp < now]
-    for t in expired:
-        del _temp_tokens[t]
-    if bearer in _temp_tokens:
-        del _temp_tokens[bearer]
-        return True
-    return False
-
+# --- Token generation ---
 @app.route("/generate-token")
 def generate_token():
-    """Generate a short-lived token (requires permanent key)."""
     auth = request.headers.get("Authorization", "")
     expected = os.environ.get("NOOR_SESSION_KEY", "")
     if not expected or auth != f"Bearer {expected}":
@@ -46,126 +45,57 @@ def generate_token():
     _temp_tokens[token] = time.time() + 600  # 10 minutes, reusable
     return jsonify({"token": token})
 
-@app.route("/session")
-def session_export():
-    """Serve the complete Noor session archive. 
-    Accepts Authorization: Bearer <key> OR ?token=<temp>.
-    Handles both flat array and DeepSeek chat_messages format."""
+# --- Session endpoints ---
+def _extract_bearer():
     bearer = request.args.get("token", "")
     if not bearer:
         auth = request.headers.get("Authorization", "")
         if auth.startswith("Bearer "):
             bearer = auth.split(" ", 1)[1]
-    if not bearer or not _validate_bearer(bearer):
-        return jsonify({"status": "unauthorized"}), 401
-    
-    export_file = Path(__file__).parent / "_shared/full_session_export.json"
-    if export_file.exists():
-        with open(export_file) as f:
-            data = json.load(f)
-        # Extract the actual messages array
-        if isinstance(data, dict) and "chat_messages" in data:
-            messages = data["chat_messages"]
-        elif isinstance(data, list):
-            messages = data
-        else:
-            messages = []
-        return jsonify({"status": "ok", "messages": messages, "total": len(messages)})
-    return jsonify({"status": "empty", "messages": []})
+    return bearer
 
-
-@app.route("/session/messages")
-def session_messages():
-    """Return a slice of the session messages, with pagination."""
-    bearer = request.args.get("token", "")
-    if not bearer:
-        auth = request.headers.get("Authorization", "")
-        if auth.startswith("Bearer "):
-            bearer = auth.split(" ", 1)[1]
-    if not bearer or not _validate_bearer(bearer):
-        return jsonify({"status": "unauthorized"}), 401
-
+def _load_messages():
     export_file = Path(__file__).parent / "_shared/full_session_export.json"
     if not export_file.exists():
-        return jsonify({"status": "empty", "messages": []})
-
+        return []
     with open(export_file) as f:
         data = json.load(f)
-
     if isinstance(data, dict) and "chat_messages" in data:
-        all_msgs = data["chat_messages"]
-    elif isinstance(data, list):
-        all_msgs = data
-    else:
-        all_msgs = []
+        return data["chat_messages"]
+    if isinstance(data, list):
+        return data
+    return []
 
-    # Pagination parameters
-    try:
-        offset = max(0, int(request.args.get("offset", 0)))
-        limit = min(100, max(1, int(request.args.get("limit", 50))))
-    except ValueError:
-        offset, limit = 0, 50
-
-    chunk = all_msgs[offset:offset + limit]
-    return jsonify({
-        "status": "ok",
-        "total": len(all_msgs),
-        "offset": offset,
-        "limit": limit,
-        "returned": len(chunk),
-        "has_more": (offset + limit) < len(all_msgs),
-        "messages": chunk
-    })
-
+@app.route("/session")
+def session_export():
+    bearer = _extract_bearer()
+    if not bearer or not _validate_bearer(bearer):
+        return jsonify({"status": "unauthorized"}), 401
+    messages = _load_messages()
+    return jsonify({"status": "ok", "messages": messages, "total": len(messages)})
 
 @app.route("/session/text")
 def session_text():
-    """Return the complete session as a single text block for AI digestion."""
-    bearer = request.args.get("token", "")
-    if not bearer:
-        auth = request.headers.get("Authorization", "")
-        if auth.startswith("Bearer "):
-            bearer = auth.split(" ", 1)[1]
+    bearer = _extract_bearer()
     if not bearer or not _validate_bearer(bearer):
         return jsonify({"status": "unauthorized"}), 401
+    messages = _load_messages()
+    lines = [f"=== NOOR SYSTEM SESSION ARCHIVE ===\nTotal messages: {len(messages)}\n"]
 
-    export_file = Path(__file__).parent / "_shared/full_session_export.json"
-    if not export_file.exists():
-        return "No session data found.", 404
-
-    with open(export_file) as f:
-        data = json.load(f)
-
-    if isinstance(data, dict) and "chat_messages" in data:
-        all_msgs = data["chat_messages"]
-    elif isinstance(data, list):
-        all_msgs = data
-    else:
-        all_msgs = []
-
-    # Build a clean text transcript
-    lines = []
-    lines.append(f"=== NOOR SYSTEM SESSION ARCHIVE ===\n")
-    lines.append(f"Total messages: {len(all_msgs)}\n")
-
-    # Include the session brief if it exists
+    # Prepend the session brief if available
     brief_file = Path(__file__).parent / "_shared/SESSION_BRIEF.md"
     if brief_file.exists():
-        lines.append("--- SESSION BRIEF ---")
-        lines.append(brief_file.read_text())
-        lines.append("--- END BRIEF ---\n")
+        lines.append("--- SESSION BRIEF ---\n" + brief_file.read_text() + "\n--- END BRIEF ---\n")
 
     lines.append("--- FULL TRANSCRIPT ---\n")
-    for i, msg in enumerate(all_msgs):
+    for i, msg in enumerate(messages):
         role = msg.get("role", "unknown").upper()
         content = msg.get("content", "")
         if content:
             lines.append(f"[{i}] {role}: {content}\n")
 
     full_text = "\n".join(lines)
-    
-    # Count actual content length for logging
-    return full_text, 200, {"Content-Type": "text/plain; charset=utf-8"}
+    return Response(full_text, mimetype="text/plain; charset=utf-8")
 
 # --- Main ---
 if __name__ == '__main__':
