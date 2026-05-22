@@ -100,32 +100,17 @@ def session_text():
 
 @app.route("/context")
 def public_context():
-    """Public /context endpoint – same briefing as the local daemon."""
-    from noor_memory import search
-    queries = [
-        "session export pipeline reusable token Render bridge continuous memory 1158 messages",
-        "stripping metadata reverse chronological order newest first session export",
-        "current infrastructure Syncthing MiroTalk Ollama Noor Daemon Render bridge ports 3000 5090 5091",
-        "Outreach Agent next step WALK phase first revenue compliance audits",
-        "Aarif identity Noor System covenant Tawhid Ihsan partner with Sam",
-        "lessons learned backup before editing Docker fails macOS 12 verify before install"
-    ]
-    results = []
-    for q in queries:
-        hits = search(q, limit=3)
-        for h in hits:
-            results.append(f"{h['sender']}: {h['message']}")
-    seen = set()
-    unique = []
-    for r in results:
-        key = r[:100]
-        if key not in seen:
-            seen.add(key)
-            unique.append(r)
-    lines = ["=== NOOR SYSTEM BRIEFING (Live from Vector Memory) ===", ""]
-    lines.extend(unique[:20])
-    briefing = "\n\n".join(lines)
-    return jsonify({"status": "ok", "context": briefing, "sources": len(unique)})
+    """Return the Noor System identity briefing from the seed file (no database needed)."""
+    import json
+    seed_file = Path(__file__).parent / "_shared/noor_identity_seed.json"
+    if seed_file.exists():
+        with open(seed_file) as f:
+            seed = json.load(f)
+        lines = ["=== NOOR SYSTEM BRIEFING ===", ""]
+        lines.extend([m["content"] for m in seed])
+        briefing = "\n\n".join(lines)
+        return jsonify({"status": "ok", "context": briefing, "sources": len(seed)})
+    return jsonify({"status": "empty", "context": "No identity seed found."})
 
 # --- Main ---
 if __name__ == '__main__':
