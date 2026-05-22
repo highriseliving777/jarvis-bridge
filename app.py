@@ -97,6 +97,36 @@ def session_text():
     full_text = "\n".join(lines)
     return Response(full_text, mimetype="text/plain; charset=utf-8")
 
+
+@app.route("/context")
+def public_context():
+    """Public /context endpoint – same briefing as the local daemon."""
+    from noor_memory import search
+    queries = [
+        "session export pipeline reusable token Render bridge continuous memory 1158 messages",
+        "stripping metadata reverse chronological order newest first session export",
+        "current infrastructure Syncthing MiroTalk Ollama Noor Daemon Render bridge ports 3000 5090 5091",
+        "Outreach Agent next step WALK phase first revenue compliance audits",
+        "Aarif identity Noor System covenant Tawhid Ihsan partner with Sam",
+        "lessons learned backup before editing Docker fails macOS 12 verify before install"
+    ]
+    results = []
+    for q in queries:
+        hits = search(q, limit=3)
+        for h in hits:
+            results.append(f"{h['sender']}: {h['message']}")
+    seen = set()
+    unique = []
+    for r in results:
+        key = r[:100]
+        if key not in seen:
+            seen.add(key)
+            unique.append(r)
+    lines = ["=== NOOR SYSTEM BRIEFING (Live from Vector Memory) ===", ""]
+    lines.extend(unique[:20])
+    briefing = "\n\n".join(lines)
+    return jsonify({"status": "ok", "context": briefing, "sources": len(unique)})
+
 # --- Main ---
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 9070)))
