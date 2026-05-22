@@ -122,7 +122,9 @@ def chat():
             seen.add(key)
             unique.append(r)
     
-    briefing = "=== NOOR SYSTEM BRIEFING (Live from Vector Memory) ===\n\n" + "\n\n".join(unique[:15])
+    lines = ["=== NOOR SYSTEM BRIEFING (Live from Vector Memory) ===", ""]
+    lines.extend(unique[:20])
+    briefing = "\n\n".join(lines)
     return jsonify({"status": "ok", "context": briefing, "sources": len(unique)})
 
 
@@ -134,7 +136,9 @@ def chat():
             seen.add(key)
             unique.append(r)
     
-    briefing = "=== NOOR SYSTEM BRIEFING (Live from Vector Memory) ===\n\n" + "\n\n".join(unique[:15])
+    lines = ["=== NOOR SYSTEM BRIEFING (Live from Vector Memory) ===", ""]
+    lines.extend(unique[:20])
+    briefing = "\n\n".join(lines)
     return jsonify({"status": "ok", "context": briefing, "sources": len(unique)})
 
 
@@ -164,7 +168,9 @@ def context_route():
             seen.add(key)
             unique.append(r)
     
-    briefing = "=== NOOR SYSTEM BRIEFING (Live from Vector Memory) ===\n\n" + "\n\n".join(unique[:15])
+    lines = ["=== NOOR SYSTEM BRIEFING (Live from Vector Memory) ===", ""]
+    lines.extend(unique[:20])
+    briefing = "\n\n".join(lines)
     return jsonify({"status": "ok", "context": briefing, "sources": len(unique)})
 
 if __name__ == "__main__":
