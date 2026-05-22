@@ -106,11 +106,31 @@ def public_context():
     if seed_file.exists():
         with open(seed_file) as f:
             seed = json.load(f)
-        lines = ["=== NOOR SYSTEM BRIEFING ===", ""]
+        lines = ["=== NOOR SYSTEM BRIEFING ===\n\nFULL SESSION HISTORY: The complete 1,158-message history is stored in `_shared/session_chunks/` as numbered Markdown files (100 messages each). Read `index.md` first, then open the most recent chunk to continue where we left off. All chunks are available at: https://jarvis-bridge-jtuc.onrender.com/session/chunks/<filename>\n\nTo access a chunk, use a token: https://jarvis-bridge-jtuc.onrender.com/session/chunks/chunk-001.md?token=<token>\n", ""]
         lines.extend([m["content"] for m in seed])
         briefing = "\n\n".join(lines)
         return jsonify({"status": "ok", "context": briefing, "sources": len(seed)})
     return jsonify({"status": "empty", "context": "No identity seed found."})
+
+
+@app.route("/session/chunks/<filename>")
+def serve_chunk(filename):
+    """Serve a session chunk file (requires valid token)."""
+    bearer = request.args.get("token", "")
+    if not bearer:
+        auth = request.headers.get("Authorization", "")
+        if auth.startswith("Bearer "):
+            bearer = auth.split(" ", 1)[1]
+    if not bearer or not _validate_bearer(bearer):
+        return jsonify({"status": "unauthorized"}), 401
+
+    chunk_path = Path(__file__).parent / "_shared/session_chunks" / filename
+    if not chunk_path.exists():
+        return jsonify({"status": "not found"}), 404
+    return Response(
+        chunk_path.read_text(),
+        mimetype="text/markdown; charset=utf-8"
+    )
 
 # --- Main ---
 if __name__ == '__main__':
