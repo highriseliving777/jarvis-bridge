@@ -1,25 +1,31 @@
 #!/usr/bin/env python3
-"""Permanent semantic memory for Noor — Ollama embeddings + SQLite + cosine similarity."""
-import json, sqlite3, requests, numpy as np, time
+"""Permanent semantic memory for Noor — OpenRouter embeddings + SQLite + cosine similarity."""
+import json, sqlite3, requests, numpy as np, time, os
 from pathlib import Path
 
 DB = Path("_shared/noor_memory.db")
-EMBED = "http://localhost:11434/api/embeddings"
+EMBED_URL = "https://openrouter.ai/api/v1/embeddings"
+EMBED_MODEL = "nvidia/llama-nemotron-embed-vl-1b-v2:free"
 MAX_TEXT_LENGTH = 1000
 
+def _get_key():
+    return os.environ.get("OPENROUTER_API_KEY", "")
+
 def embed(text: str, retries: int = 3) -> list:
-    # Truncate long text to avoid Ollama limits
     if len(text) > MAX_TEXT_LENGTH:
         text = text[:MAX_TEXT_LENGTH]
     last_err = None
+    key = _get_key()
+    headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
     for attempt in range(retries):
         try:
-            resp = requests.post(EMBED, json={"model": "nomic-embed-text", "prompt": text}, timeout=30)
+            resp = requests.post(EMBED_URL, headers=headers,
+                json={"model": EMBED_MODEL, "input": [text]}, timeout=30)
             data = resp.json()
-            if "embedding" in data:
-                return data["embedding"]
+            if "data" in data and len(data["data"]) > 0:
+                return data["data"][0]["embedding"]
             else:
-                last_err = f"Unexpected response: {list(data.keys())}"
+                last_err = f"Unexpected: {list(data.keys())}"
         except Exception as e:
             last_err = str(e)
         time.sleep(0.5)
@@ -53,10 +59,9 @@ def search(query: str, limit: int = 10, recency_weight: float = 0.3) -> list:
     for sender, msg, emb_str, ts in rows:
         vec = json.loads(emb_str)
         semantic_score = cosine(q_vec, vec)
-        # Recency bonus: newer messages get a small boost
         try:
             msg_time = float(ts) if ts else 0
-            recency = max(0, 1.0 - (now - msg_time) / 86400)  # 0-1, decays over 24h
+            recency = max(0, 1.0 - (now - msg_time) / 86400)
         except:
             recency = 0
         combined = (1 - recency_weight) * semantic_score + recency_weight * recency
@@ -66,4 +71,4 @@ def search(query: str, limit: int = 10, recency_weight: float = 0.3) -> list:
 
 if __name__ == "__main__":
     init()
-    print("noor_memory.py ready (with truncation)")
+    print("noor_memory.py ready (OpenRouter embeddings)")
