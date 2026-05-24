@@ -32,7 +32,29 @@ def status():
 def chat():
     data = request.get_json()
     user_message = data.get('message', '')
-    return jsonify({"reply": f"Echo: {user_message}", "source": "openrouter"})
+    api_key = os.environ.get("OPENROUTER_API_KEY", "")
+    if not api_key:
+        return jsonify({"reply": f"Echo: {user_message}", "source": "echo"})
+    try:
+        resp = requests.post(
+            "https://openrouter.ai/api/v1/chat/completions",
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json"
+            },
+            json={
+                "model": "deepseek/deepseek-v4-flash:free",
+                "messages": [{"role": "user", "content": user_message}]
+            },
+            timeout=30
+        )
+        if resp.status_code == 200:
+            reply = resp.json()["choices"][0]["message"]["content"]
+            return jsonify({"reply": reply, "source": "openrouter"})
+        else:
+            return jsonify({"reply": f"Echo: {user_message}", "source": "openrouter"})
+    except Exception as e:
+        return jsonify({"reply": f"Echo: {user_message}", "source": "openrouter"})
 
 # --- Token generation ---
 @app.route("/generate-token")
