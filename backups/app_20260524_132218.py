@@ -69,6 +69,10 @@ def chat():
         except Exception as e:
             last_error = str(e)
     return jsonify({"reply": f"All models unavailable. Last error: {last_error}", "source": "none"})
+
+# --- Token generation ---
+@app.route("/generate-token")
+def generate_token():
     auth = request.headers.get("Authorization", "")
     expected = os.environ.get("NOOR_SESSION_KEY", "")
     if not expected or auth != f"Bearer {expected}":
