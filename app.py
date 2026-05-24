@@ -32,9 +32,10 @@ def status():
 def chat():
     data = request.get_json()
     user_message = data.get('message', '')
-    api_key = os.environ.get("OPENROUTER_API_KEY", "")
+    api_key = os.environ.get("OPENROUTER_API_KEY")
     if not api_key:
-        return jsonify({"reply": f"Echo: {user_message}", "source": "echo"})
+        return jsonify({"reply": "OpenRouter key not configured.", "source": "none"})
+
     try:
         resp = requests.post(
             "https://openrouter.ai/api/v1/chat/completions",
@@ -52,7 +53,9 @@ def chat():
             reply = resp.json()["choices"][0]["message"]["content"]
             return jsonify({"reply": reply, "source": "openrouter"})
         else:
-            return jsonify({"reply": f"Echo: {user_message}", "source": "openrouter"})
+            return jsonify({"reply": f"OpenRouter error {resp.status_code}", "source": "openrouter"})
+    except Exception as e:
+        return jsonify({"reply": f"Bridge error: {str(e)}", "source": "none"})
     except Exception as e:
         return jsonify({"reply": f"Echo: {user_message}", "source": "openrouter"})
 
