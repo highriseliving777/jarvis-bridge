@@ -37,24 +37,38 @@ def chat():
     if not api_key:
         return jsonify({"reply": "OpenRouter key not configured.", "source": "none"})
 
-    try:
-        resp = requests.post(
-            "https://openrouter.ai/api/v1/chat/completions",
-            headers={
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json"
-            },
-            json={
-                "model": "deepseek/deepseek-v4-flash:free",
-                "messages": [{"role": "user", "content": user_message}]
-            },
-            timeout=30
-        )
-        if resp.status_code == 200:
-            reply = resp.json()["choices"][0]["message"]["content"]
-            return jsonify({"reply": reply, "source": "openrouter"})
-        else:
-            return jsonify({"reply": f"OpenRouter error {resp.status_code}", "source": "openrouter"})
+    # List of free models to try in order
+    models = [
+        "qwen/qwen3-next-80b-a3b-instruct:free",
+        "meta-llama/llama-3.3-70b-instruct:free",
+        "google/gemma-4-26b-a4b-it:free",
+        "deepseek/deepseek-v4-flash:free",
+        "nvidia/nemotron-3-super-120b-a12b:free"
+    ]
+
+    last_error = ""
+    for model in models:
+        try:
+            resp = requests.post(
+                "https://openrouter.ai/api/v1/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "model": model,
+                    "messages": [{"role": "user", "content": user_message}]
+                },
+                timeout=30
+            )
+            if resp.status_code == 200:
+                reply = resp.json()["choices"][0]["message"]["content"]
+                return jsonify({"reply": reply, "source": "openrouter", "model": model})
+            else:
+                last_error = f"{resp.status_code} on {model}"
+        except Exception as e:
+            last_error = str(e)
+    return jsonify({"reply": f"All models unavailable. Last error: {last_error}", "source": "none"})
     except Exception as e:
         return jsonify({"reply": f"Bridge error: {str(e)}", "source": "none"})
     except Exception as e:
