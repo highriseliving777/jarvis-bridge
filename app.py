@@ -167,3 +167,13 @@ def serve_chunk(filename):
 # --- Main ---
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 9070)))
+
+@app.route("/generate-token")
+def generate_token():
+    auth = request.headers.get("Authorization", "")
+    expected = os.environ.get("NOOR_SESSION_KEY", "")
+    if not expected or auth != f"Bearer {expected}":
+        return jsonify({"status": "unauthorized"}), 401
+    token = secrets.token_hex(16)
+    _temp_tokens[token] = time.time() + 600
+    return jsonify({"token": token})
