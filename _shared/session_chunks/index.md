@@ -1,20 +1,17 @@
-# Noor Session Index
+# Session Index — 1418 messages in 15 chunks
 
-Total messages: 1252
-
-Total chunks: 13
-
-
-- [Chunk 1](chunk-001.md)
-- [Chunk 2](chunk-002.md)
-- [Chunk 3](chunk-003.md)
-- [Chunk 4](chunk-004.md)
-- [Chunk 5](chunk-005.md)
-- [Chunk 6](chunk-006.md)
-- [Chunk 7](chunk-007.md)
-- [Chunk 8](chunk-008.md)
-- [Chunk 9](chunk-009.md)
-- [Chunk 10](chunk-010.md)
-- [Chunk 11](chunk-011.md)
-- [Chunk 12](chunk-012.md)
-- [Chunk 13](chunk-013.md)
+- [Chunk 001](./chunk-001.md)
+- [Chunk 002](./chunk-002.md)
+- [Chunk 003](./chunk-003.md)
+- [Chunk 004](./chunk-004.md)
+- [Chunk 005](./chunk-005.md)
+- [Chunk 006](./chunk-006.md)
+- [Chunk 007](./chunk-007.md)
+- [Chunk 008](./chunk-008.md)
+- [Chunk 009](./chunk-009.md)
+- [Chunk 010](./chunk-010.md)
+- [Chunk 011](./chunk-011.md)
+- [Chunk 012](./chunk-012.md)
+- [Chunk 013](./chunk-013.md)
+- [Chunk 014](./chunk-014.md)
+- [Chunk 015](./chunk-015.md)

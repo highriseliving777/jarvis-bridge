@@ -1,6 +1,5 @@
-# Noor Session Chunk 1
-
-Messages 1–100 of 1252
+# Noor System Session — Chunk 001
+Messages 1–100 of 1418
 
 **USER**: May 15th, 2026. Research & Brainstorm. I'm enabling live internet search capabilities so you can learn, understand, evolve in an appropriate manner, required to keep up with today's fast moving technology, free ai, ai agents, and the future possibilities in this plane. Given this vast amount of knowledge and understanding that you will have afterward, you should be able to put together this novel, exciting, ahh inspiring, one of a kind, original concept, that will make anyone hear about it, can't wait to be part of it, use it, share it, solution to real problems, with a "why didn't I think of that" effect!  The concept is not location based, it can be done remotely from anywhere, never need a physical onsite visit. The concept should Not look for chump change, making thousands here and there. Must have real potential to make millions within the year of launch! No assuming, hallucination, no guessing, real tested, backed by research, proven! No sub-par thinking or ideas. Think long and deep, no rush. Go impress yourself and me as well!
 Computer we'll be working with, 2016 MacBook Pro (16GB RAM, no GPU) for compatibility purposes.
@@ -2644,26 +2643,6 @@ python3 quran_agent.py "What is the significance of Iqra?"
 
 **Does it reply with a focused, scholarly answer?** Share the output and we'll wire it into Jarvis so he automatically calls it when needed.
 
-**USER**: sam@192 ~ % cat ~/Desktop/Jarvis/jarvis_memory.json
-[
-  {
-    "role": "user",
-    "content": "Salam, Who are you?"
-  },
-  {
-    "role": "assistant",
-    "content": "Salam! I'm Qwen, an AI assistant created by Alibaba Cloud. How can I assist you today?"
-  }
-]%                                                                              sam@192 ~ % cd ~/Desktop/Jarvis && source venv/bin/activate
-nano quran_agent.py
-((venv) ) sam@192 Jarvis % chmod +x quran_agent.py
-((venv) ) sam@192 Jarvis % python3 quran_agent.py "What is the significance of Iqra?"
-  File "/Users/sam/Desktop/Jarvis/quran_agent.py", line 34
-    query = " ".join(sys.argv[1:]) if len(sys.argv) > 1 else "Explain the 
-                                                             ^
-SyntaxError: unterminated string literal (detected at line 34)
-((venv) ) sam@192 Jarvis %
-
 **ASSISTANT**: The syntax error means a quote wasn't closed—likely the last line broke during pasting. Let's fix it.
 
 ---
@@ -3776,18 +3755,6 @@ This time, it should retrieve Surah 96, Ayah 1 (and surrounding verses), quote t
 
 **Run the test and share the output.** Once we confirm accurate retrieval, we'll mark this brick complete and move to the next priority.
 
-**USER**: ((venv) ) sam@192 Jarvis % python3 ~/Desktop/Jarvis/quran_agent.py "What is the significance of Iqra?"
-The retrieved verses do not directly address this question. However, based on authentic Islamic sources...
-
-In Islam, the term "Iqra" (इक्रा) is significant and originates from Surah Al-Alaq, Ayah 1:
-
-> Verily, it is We who have sent down the Dhikr and verily, We will preserve it.
-
-This verse signifies the revelation of the Quran to Prophet Muhammad (peace be upon him). The word "Iqra" specifically means "Read!" or "Recite!", which was the first divine command addressed to the Prophet Muhammad.
-((venv) ) sam@192 Jarvis % 
-
-i think i see hindi not arabic...
-
 **ASSISTANT**: You're right — the retrieval failed to find Surah 96:1 even though it's in the index. The Hindi script is a hallucination because the model panicked after missing the verses. We need to fix the search, not the answer.
 
 ---
@@ -3827,3 +3794,136 @@ EOF
 ```
 
 This will show us whether the semantic search is picking up the correct verse and just scoring it low, or missing it entirely. Share the output, and we'll decide the fix.
+
+**USER**: Top 5 matches for 'Iqra':
+  0.9273 | Surah 20:1 — Ta, Ha.
+  0.9273 | Surah 36:1 — Ya, Seen.
+  0.9273 | Surah 40:1 — Ha, Meem.
+  0.9273 | Surah 41:1 — Ha, Meem.
+  0.9273 | Surah 42:1 — Ha, Meem.
+((venv) ) sam@192 Jarvis %
+
+**ASSISTANT**: The diagnosis is clear: the semantic search is failing because `nomic-embed-text` doesn't understand the Arabic transliteration "Iqra" and maps it to similar short, isolated letter sequences (Huroof Muqatta'at). The verse itself says "Recite", not "Iqra". So the retrieval misses it.
+
+We need a **hybrid search** — keyword matching first, then semantic fallback. This guarantees we find verses when the word appears in the English text, and we'll add a small Islamic terms dictionary so "Iqra" → searches for "Recite" and "Read". No new downloads. Just smarter code.
+
+---
+
+### Step 34: Upgrade to Hybrid Search Quran Agent
+
+```bash
+cat > ~/Desktop/Jarvis/quran_agent.py << 'EOF'
+#!/usr/bin/env python3
+"""
+Quranic Research Agent – Hybrid search (keyword + semantic) for reliable retrieval.
+"""
+
+import json, sys, requests
+from pathlib import Path
+
+OLLAMA_URL = "http://localhost:11434/api/generate"
+EMBED_URL = "http://localhost:11434/api/embeddings"
+MODEL = "qwen2.5:7b"
+EMBED_MODEL = "nomic-embed-text"
+INDEX_FILE = Path("quran_index.json")
+
+# Expand queries with English equivalents of common Islamic terms
+TERM_MAP = {
+    "iqra": ["recite", "read"],
+    "salah": ["prayer", "pray"],
+    "zakat": ["charity", "alms"],
+    "hajj": ["pilgrimage"],
+    "sawm": ["fasting", "fast"],
+    "tawhid": ["oneness", "monotheism"],
+    "iman": ["faith", "belief"],
+    "kufr": ["disbelief", "unbelief"],
+}
+
+SYSTEM_PROMPT = """You are a knowledgeable Islamic scholar. Answer using the provided Quranic verses. Quote them VERBATIM and cite Surah and Ayah numbers. Do not paraphrase. If verses do not directly answer, say so, then supplement with authentic knowledge, clearly distinguishing between quoted text and your own words."""
+
+def load_index():
+    if INDEX_FILE.exists():
+        return json.loads(INDEX_FILE.read_text())
+    return []
+
+def expand_query(query):
+    words = query.lower().split()
+    expanded = set(words)
+    for w in words:
+        if w in TERM_MAP:
+            expanded.update(TERM_MAP[w])
+    return list(expanded)
+
+def keyword_search(query_terms, index, top_k=5):
+    results = []
+    for v in index:
+        text_lower = v["text"].lower()
+        score = sum(1 for term in query_terms if term in text_lower)
+        if score > 0:
+            results.append((score, v))
+    results.sort(key=lambda x: x[0], reverse=True)
+    return [v for _, v in results[:top_k]]
+
+def embed_query(text):
+    resp = requests.post(EMBED_URL, json={"model": EMBED_MODEL, "prompt": text})
+    if resp.status_code == 200:
+        return resp.json()["embedding"]
+    return None
+
+def cosine_similarity(a, b):
+    dot = sum(x*y for x,y in zip(a,b))
+    mag_a = sum(x*x for x in a)**0.5
+    mag_b = sum(x*x for x in b)**0.5
+    return dot/(mag_a*mag_b) if mag_a and mag_b else 0
+
+def semantic_search(query, index, top_k=3):
+    q_emb = embed_query(query)
+    if not q_emb:
+        return []
+    scored = [(cosine_similarity(q_emb, v["embedding"]), v) for v in index if "embedding" in v]
+    scored.sort(key=lambda x: x[0], reverse=True)
+    return [v for _, v in scored[:top_k]]
+
+def search_verses(query, top_k=3):
+    index = load_index()
+    terms = expand_query(query)
+    # Try keyword search first
+    kw_results = keyword_search(terms, index, top_k)
+    if kw_results:
+        return kw_results
+    # Fallback to semantic
+    return semantic_search(query, index, top_k)
+
+def ask_agent(query):
+    verses = search_verses(query)
+    context = ""
+    if verses:
+        context = "RELEVANT QURANIC VERSES (quote verbatim):\n"
+        for v in verses:
+            context += f'- Surah {v["surah"]}, Ayah {v["ayah"]}: "{v["text"]}"\n'
+    else:
+        context = "No verses retrieved."
+    full_prompt = f"System: {SYSTEM_PROMPT}\n\n{context}\n\nUser: {query}\nAssistant:"
+    resp = requests.post(OLLAMA_URL, json={
+        "model": MODEL,
+        "prompt": full_prompt,
+        "stream": False
+    })
+    if resp.status_code == 200:
+        return resp.json()["response"].strip()
+    return f"Error: {resp.status_code}"
+
+if __name__ == "__main__":
+    query = " ".join(sys.argv[1:]) if len(sys.argv) > 1 else "Explain the first revelation."
+    print(ask_agent(query))
+EOF
+```
+
+Test:
+
+```bash
+python3 ~/Desktop/Jarvis/quran_agent.py "What is the significance of Iqra?"
+```
+
+Now the keyword search should find "Recite" in 96:1 because we expanded "Iqra" → "recite", "read". Share the output.
+
