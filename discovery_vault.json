@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-05-18",
-  "total_resources": 112,
+  "last_updated": "2026-05-25",
+  "total_resources": 149,
   "directories": [
     {
       "name": "AIChief",
@@ -817,6 +817,237 @@
       "category": "methodology",
       "status": "using",
       "description": "Phase-gated deployment. Crawl: one specialist, one task, human-in-the-loop. 40% agent failure rate necessitates this discipline."
+    }
+  ],
+  "tools": [
+    {
+      "name": "Fellou",
+      "category": "agentic_browser",
+      "url": "https://fellou.ai/",
+      "description": "Agentic browser for automated research, form filling, and cross-app workflows.",
+      "discovered_by": "sam"
+    },
+    {
+      "name": "Emergent",
+      "category": "agent_framework",
+      "url": "https://emergent.sh",
+      "description": "AI agent orchestration platform."
+    },
+    {
+      "name": "Cobalt",
+      "category": "media_tools",
+      "url": "https://cobalt.tools/",
+      "description": "Open-source media downloader and converter."
+    },
+    {
+      "name": "ScienceEarth",
+      "category": "research",
+      "url": "https://scienceearth.org/",
+      "description": "Open science and earth data platform."
+    },
+    {
+      "name": "VidRush",
+      "category": "video_generation",
+      "url": "https://vidrush.studio/",
+      "description": "AI-powered video creation and editing studio."
+    },
+    {
+      "name": "TopBusinessSoftware AI Automation",
+      "category": "directory",
+      "url": "https://topbusinesssoftware.com/categories/ai-automation/free/",
+      "description": "Directory of free AI automation tools for business."
+    },
+    {
+      "name": "Open WebUI",
+      "category": "interface",
+      "url": "https://github.com/open-webui",
+      "description": "Self-hosted ChatGPT-like interface for local LLMs (Ollama compatible)."
+    },
+    {
+      "name": "Cline",
+      "category": "coding_agent",
+      "url": "https://cline.bot/",
+      "description": "Open-source AI coding agent (62k+ stars). Works with any model, local or cloud."
+    },
+    {
+      "name": "Kubeflow",
+      "category": "mlops",
+      "url": "https://www.kubeflow.org",
+      "description": "Machine Learning workflows on Kubernetes."
+    },
+    {
+      "name": "MLflow",
+      "category": "mlops",
+      "url": "https://mlflow.org",
+      "description": "Open source platform for the machine learning lifecycle."
+    },
+    {
+      "name": "Ray",
+      "category": "mlops",
+      "url": "https://www.ray.io",
+      "description": "Unified framework for scaling AI and Python applications."
+    },
+    {
+      "name": "Fooocus",
+      "category": "image_generation",
+      "url": "https://fooocus.ai/",
+      "description": "Open-source image generation tool (Stable Diffusion based)."
+    },
+    {
+      "name": "yt-dlp",
+      "category": "media_tools",
+      "url": "https://github.com/yt-dlp/yt-dlp",
+      "description": "Feature-rich command-line audio/video downloader."
+    },
+    {
+      "name": "Apache Airflow",
+      "category": "workflow",
+      "url": "https://airflow.apache.org",
+      "description": "Programmatically author, schedule, and monitor workflows."
+    },
+    {
+      "name": "AppFlowy",
+      "category": "productivity",
+      "url": "https://github.com/AppFlowy-IO/AppFlowy",
+      "description": "Open-source Notion alternative with AI features."
+    },
+    {
+      "name": "Penpot AI",
+      "category": "design",
+      "url": "https://github.com/amannhq/penpot-ai",
+      "description": "Open-source design and prototyping platform with AI."
+    },
+    {
+      "name": "Bitwarden (Business)",
+      "category": "security",
+      "url": "https://bitwarden.com/go/business-password-manager/",
+      "description": "Open-source password manager for business."
+    },
+    {
+      "name": "Plausible Analytics",
+      "category": "analytics",
+      "url": "https://github.com/plausible/analytics",
+      "description": "Simple, privacy-friendly Google Analytics alternative."
+    },
+    {
+      "name": "OpenAI Whisper",
+      "category": "speech_to_text",
+      "url": "https://github.com/openai/whisper",
+      "description": "General-purpose speech recognition model."
+    },
+    {
+      "name": "OpenAgents",
+      "category": "agent_framework",
+      "url": "https://github.com/openagents/openagents",
+      "description": "Open-source agent infrastructure."
+    },
+    {
+      "name": "GPT4All",
+      "category": "local_ai",
+      "url": "https://gpt4all.io",
+      "description": "Run LLMs locally on CPU."
+    },
+    {
+      "name": "LangChain",
+      "category": "agent_framework",
+      "url": "https://www.langchain.com",
+      "description": "Framework for building LLM-powered applications."
+    },
+    {
+      "name": "LlamaIndex",
+      "category": "data_framework",
+      "url": "https://www.llamaindex.ai",
+      "description": "Data framework for LLM applications."
+    },
+    {
+      "name": "Rasa",
+      "category": "conversational_ai",
+      "url": "https://rasa.com",
+      "description": "Open source conversational AI platform."
+    },
+    {
+      "name": "Botpress",
+      "category": "conversational_ai",
+      "url": "https://botpress.com",
+      "description": "Open-source chatbot platform."
+    },
+    {
+      "name": "Paperless-ngx",
+      "category": "productivity",
+      "url": "https://paperless-ngx.readthedocs.io",
+      "description": "Open-source document management system with AI."
+    },
+    {
+      "name": "Perplexica",
+      "category": "search",
+      "url": "https://github.com/ItzCrazyKns/Perplexica",
+      "description": "AI-powered search engine, open-source alternative to Perplexity."
+    },
+    {
+      "name": "LLM Workflow Engine",
+      "category": "workflow",
+      "url": "https://github.com/llm-workflow-engine/llm-workflow-engine",
+      "description": "Build and run complex LLM workflows."
+    },
+    {
+      "name": "Hermes Agent (Nous Research)",
+      "category": "agent_framework",
+      "url": "https://github.com/nousresearch/hermes-agent",
+      "description": "Self-improving agent loop with skill library. Builds persistent memory across sessions."
+    },
+    {
+      "name": "ViMax",
+      "category": "video_generation",
+      "url": "https://github.com/HKUDS/ViMax",
+      "description": "Open-source AI video generation model."
+    },
+    {
+      "name": "LLMs from Scratch",
+      "category": "education",
+      "url": "https://github.com/mma-github/llms-from-scratch",
+      "description": "Educational resource for building LLMs from scratch."
+    },
+    {
+      "name": "Microsoft Agentic AI Developer Certification",
+      "category": "education",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/agentic-ai-developer/?practice-assessment-type=certification",
+      "description": "Official certification for agentic AI developers."
+    },
+    {
+      "name": "Frigate",
+      "category": "computer_vision",
+      "url": "https://github.com/blakeblackshear/frigate",
+      "description": "Open-source NVR with real-time object detection."
+    },
+    {
+      "name": "playhtml",
+      "category": "web_tools",
+      "url": "https://github.com/spencerc99/playhtml",
+      "description": "HTML playground for interactive elements."
+    },
+    {
+      "name": "Awesome Open Source AI Tools (737+)",
+      "category": "directory",
+      "url": "https://github.com/swiftsimplify/awesome-open-source-ai-tools",
+      "description": "Curated list of 737+ open-source AI tools categorized by business function."
+    },
+    {
+      "name": "Phi-4 (Microsoft)",
+      "category": "model",
+      "url": "https://huggingface.co/microsoft/phi-4",
+      "description": "Microsoft's open-source small language model."
+    },
+    {
+      "name": "Llama-4-Scout-17B (Meta)",
+      "category": "model",
+      "url": "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E",
+      "description": "Meta's open-weight small model, efficient inference."
+    }
+  ],
+  "changelog": [
+    {
+      "date": "2026-05-25",
+      "action": "Added 37 new tools from Sam's goldmine"
     }
   ]
 }
