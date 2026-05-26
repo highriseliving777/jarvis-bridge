@@ -177,3 +177,15 @@ def generate_token():
     token = secrets.token_hex(16)
     _temp_tokens[token] = time.time() + 600
     return jsonify({"token": token})
+
+# --- Handoff file serving ---
+@app.route("/handoff/<filename>")
+def serve_handoff(filename):
+    """Serve a handoff file from the workspace root (BLUEPRINT.md, CLAUDE.md, etc.)."""
+    allowed = {"BLUEPRINT.md", "CLAUDE.md", "HANDOFF.md", "CONTEXT.md", "SESSION_STATE.md", "MASTER_CLONE.md"}
+    if filename not in allowed:
+        return jsonify({"status": "not found"}), 404
+    file_path = Path(__file__).parent / filename
+    if not file_path.exists():
+        return jsonify({"status": "not found"}), 404
+    return Response(file_path.read_text(), mimetype="text/markdown; charset=utf-8")
