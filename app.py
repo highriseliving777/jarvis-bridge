@@ -189,3 +189,33 @@ def serve_handoff(filename):
     if not file_path.exists():
         return jsonify({"status": "not found"}), 404
     return Response(file_path.read_text(), mimetype="text/markdown; charset=utf-8")
+
+@app.route("/session/latest")
+def session_latest():
+    """Redirect to the most recent session chunk."""
+    import re
+    chunks_dir = Path(__file__).parent / "_shared" / "session_chunks"
+    if not chunks_dir.exists():
+        return jsonify({"status": "no chunks"}), 404
+    # Find highest numbered chunk
+    highest = 0
+    for f in chunks_dir.glob("chunk-*.md"):
+        m = re.search(r"chunk-(\d+)\.md", f.name)
+        if m:
+            n = int(m.group(1))
+            if n > highest:
+                highest = n
+    if highest == 0:
+        return jsonify({"status": "no chunks"}), 404
+    chunk_file = f"chunk-{highest:03d}.md"
+    bearer = request.args.get("token", "")
+    if not bearer:
+        auth = request.headers.get("Authorization", "")
+        if auth.startswith("Bearer "):
+            bearer = auth.split(" ", 1)[1]
+    if not bearer or not _validate_bearer(bearer):
+        return jsonify({"status": "unauthorized"}), 401
+    chunk_path = chunks_dir / chunk_file
+    if not chunk_path.exists():
+        return jsonify({"status": "not found"}), 404
+    return Response(chunk_path.read_text(), mimetype="text/markdown; charset=utf-8")
