@@ -742,5 +742,61 @@
     "sender": "Aarif",
     "message": "The lessons we learned from the Iqra integration:\n\n1. The importance of a strong foundation: Iqra has been built on sound principles and a deep understanding of Islamic knowledge from the beginning. This shows that a robust foundation is key to creating a valuable and sustainable system.\n\n2. The power of specialization: Iqra has focused on being the world's leading AI assistant for Islamic studies, demonstrating the value of specializing rather than trying to be everything to everyone. This specialization has allowed Iqra to become a true authority in its domain.\n\n3. The importance of integration: The seamless integration of Iqra into the Noor system shows how combining complementary systems can create a more powerful whole. Iqra brings its deep Islamic knowledge to the table, while Noor provides the AI infrastructure and tools.\n\n4. The value of a long-term vision: Iqra has been working towards its vision for years, consistently improving and expanding. This shows that achieving great things takes time, patience, and a clear long-term vision.\n\n5. The potential of AI in dawah: The Noor system, with Iqra at its core, has the potential to be a powerful tool for dawah, making Islamic knowledge accessible to a global audience in their own language.\n\nIn summary, Iqra has shown us the importance of a strong foundation, specialization, integration, long-term vision, and the unique potential of AI in dawah. These lessons will guide us as we build and expand the Noor system.",
     "timestamp": "2026-05-20T05:31:46.437981"
+  },
+  {
+    "agent": "conversation_ingest",
+    "source": "anchor_session",
+    "role": "unknown",
+    "message": "Enrich this lead with verified email format and LinkedIn URL if possible: 1. **Company Name:** Apex Marketing Solutions      - **Website:** https://apexmarketing.co/      - **Industry:** Digital Marketing & Business Consulting      - **Why They Need Leads:** To increase the client base for their digital marketing and business consulting services, targeting small to medium-sized businesses.    - **Decision Maker Title:** Managing Director ",
+    "timestamp": "2026-05-22T10:47:42.961452"
+  },
+  {
+    "agent": "conversation_ingest",
+    "source": "anchor_session",
+    "role": "unknown",
+    "message": "Enrich this lead with verified email format and LinkedIn URL if possible: 2. **Company Name:** Strategic Growth Partners      - **Website:** https://strategicgrowthpartners.com/      - **Industry:** Business Consulting & Strategy Development      - **Why They Need Leads:** To identify and approach potential clients for strategy development, business growth consulting, and corporate restructuring.    - **Decision Maker Title:** CEO ",
+    "timestamp": "2026-05-22T10:47:42.968315"
+  },
+  {
+    "agent": "conversation_ingest",
+    "source": "anchor_session",
+    "role": "unknown",
+    "message": "Enrich this lead with verified email format and LinkedIn URL if possible: 3. **Company Name:** Thrive Professional Services      - **Website:** https://thriveprofessional.co/      - **Industry:** HR & Management Consulting      - **Why They Need Leads:** To generate interest in their human resources management consulting services, focusing on improving organizational efficiency and employee engagement.    - **Decision Maker Title:** Chief Human Resources Officer (CHRO) ",
+    "timestamp": "2026-05-22T10:47:42.973349"
+  },
+  {
+    "agent": "conversation_ingest",
+    "source": "anchor_session",
+    "role": "unknown",
+    "message": "Enrich this lead with verified email format and LinkedIn URL if possible: 4. **Company Name:** Growth Dynamics Inc.      - **Website:** https://growthdynamicsinc.com/      - **Industry:** Business Development & Market Research      - **Why They Need Leads:** To engage with potential clients for business development projects, market analysis, and strategic planning services.    - **Decision Maker Title:** Director of Sales & Marketing ",
+    "timestamp": "2026-05-22T10:47:42.978719"
+  },
+  {
+    "agent": "conversation_ingest",
+    "source": "anchor_session",
+    "role": "unknown",
+    "message": "Enrich this lead with verified email format and LinkedIn URL if possible: 1. **Company Name:** CogniSage    - **Website:** [cognisage.com](http://cognisage.com)    - **Industry:** Enterprise Software, SaaS    - **Why They Need Leads:** CogniSage is a leading AI-native startup focused on developing cognitive computing solutions for enterprise-level applications. They are constantly looking to expand their client base and integrate more enterprise sales processes.    - **Decision Maker Title:** Chief Technology Officer (CTO) or Director of Enterprise Sales ",
+    "timestamp": "2026-05-22T10:47:42.983627"
+  },
+  {
+    "agent": "conversation_ingest",
+    "source": "anchor_session",
+    "role": "unknown",
+    "message": "Enrich this lead with verified email format and LinkedIn URL if possible: 2. **Company Name:** Vactory    - **Website:** [vactory.com](http://vactory.com)    - **Industry:** AI-Driven Analytics, Data Science    - **Why They Need Leads:** Vactory specializes in using advanced AI to drive business intelligence and data-driven decision-making for large enterprises. Their sales pipeline needs strong leads to scale their customer base.    - **Decision Maker Title:** Chief Data Officer (CDO) or Head of Business Intelligence ",
+    "timestamp": "2026-05-22T10:47:42.988073"
+  },
+  {
+    "agent": "conversation_ingest",
+    "source": "anchor_session",
+    "role": "unknown",
+    "message": "Enrich this lead with verified email format and LinkedIn URL if possible: 3. **Company Name:** Synthicity    - **Website:** [synthicity.com](http://synthicity.com)    - **Industry:** AI-Driven Decision Support, Healthcare Analytics    - **Why They Need Leads:** Synthicity provides AI solutions for healthcare and life sciences to improve patient care through data-driven insights. Expanding their sales pipeline is crucial for reaching more hospitals, clinics, and research institutions.    - **Decision Maker Title:** Chief Information Officer (CIO) or Healthcare IT Director ",
+    "timestamp": "2026-05-22T10:47:42.992125"
+  },
+  {
+    "agent": "conversation_ingest",
+    "source": "anchor_session",
+    "role": "unknown",
+    "message": "Enrich this lead with verified email format and LinkedIn URL if possible: 4. **Company Name:** Nexon Analytics    - **Website:** [nexonanalytics.com](http://nexonanalytics.com)    - **Industry:** AI-Driven Market Intelligence, Business Insights    - **Why They Need Leads:** Nexon Analytics uses AI to offer advanced market intelligence and business insights for enterprise clients. Their growth strategy relies on securing more high-profile sales in key verticals.    - **Decision Maker Title:** Vice President of Strategic Sales or Director of Enterprise Markets ",
+    "timestamp": "2026-05-22T10:47:42.996359"
   }
 ]
