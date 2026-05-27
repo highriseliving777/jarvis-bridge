@@ -255,3 +255,12 @@ def submit_form():
         json.dump(existing, f, indent=2, ensure_ascii=False)
     
     return jsonify({"status": "ok"})
+
+@app.route('/check-submissions')
+def check_submissions():
+    submissions_file = Path(__file__).parent / "_shared" / "form_submissions.json"
+    if submissions_file.exists():
+        with open(submissions_file) as f:
+            data = json.load(f)
+        return jsonify({"exists": True, "count": len(data), "last_entry": data[-1] if data else None})
+    return jsonify({"exists": False})
