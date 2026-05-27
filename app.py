@@ -219,3 +219,39 @@ def session_latest():
     if not chunk_path.exists():
         return jsonify({"status": "not found"}), 404
     return Response(chunk_path.read_text(), mimetype="text/markdown; charset=utf-8")
+
+@app.route('/submit', methods=['POST'])
+def submit_form():
+    """Accept contact form submissions and store them."""
+    data = request.get_json(silent=True) or request.form.to_dict()
+    name = data.get('name', 'Unknown')
+    email = data.get('email', '')
+    message = data.get('message', '')
+    
+    # Basic spam check: reject if honeypot field is filled
+    if data.get('botcheck'):
+        return jsonify({"status": "spam"}), 400
+    
+    # Minimal validation
+    if not email or not message:
+        return jsonify({"status": "missing fields"}), 400
+    
+    import datetime
+    submission = {
+        "name": name,
+        "email": email,
+        "message": message,
+        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        "source": "noor-website"
+    }
+    
+    submissions_file = Path(__file__).parent / "_shared" / "form_submissions.json"
+    existing = []
+    if submissions_file.exists():
+        with open(submissions_file) as f:
+            existing = json.load(f)
+    existing.append(submission)
+    with open(submissions_file, "w") as f:
+        json.dump(existing, f, indent=2, ensure_ascii=False)
+    
+    return jsonify({"status": "ok"})
