@@ -223,10 +223,15 @@ def session_latest():
 @app.route('/submit', methods=['POST'])
 def submit_form():
     """Accept contact form submissions and store them."""
-    data = request.get_json(silent=True) or request.form.to_dict()
-    name = data.get('name', 'Unknown')
-    email = data.get('email', '')
-    message = data.get('message', '')
+    import datetime
+    
+    data = request.get_json(silent=True)
+    if not data:
+        data = request.form.to_dict()
+    
+    name = data.get('name', 'Unknown').strip()
+    email = data.get('email', '').strip()
+    message = data.get('message', '').strip()
     
     # Basic spam check: reject if honeypot field is filled
     if data.get('botcheck'):
@@ -236,7 +241,6 @@ def submit_form():
     if not email or not message:
         return jsonify({"status": "missing fields"}), 400
     
-    import datetime
     submission = {
         "name": name,
         "email": email,
@@ -246,6 +250,8 @@ def submit_form():
     }
     
     submissions_file = Path(__file__).parent / "_shared" / "form_submissions.json"
+    submissions_file.parent.mkdir(parents=True, exist_ok=True)
+    
     existing = []
     if submissions_file.exists():
         with open(submissions_file) as f:
