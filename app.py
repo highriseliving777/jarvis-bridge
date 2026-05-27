@@ -264,3 +264,14 @@ def check_submissions():
             data = json.load(f)
         return jsonify({"exists": True, "count": len(data), "last_entry": data[-1] if data else None})
     return jsonify({"exists": False})
+
+@app.route('/test-write')
+def test_write():
+    import os
+    path = Path(__file__).parent / "_shared" / "test_write.txt"
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("hello")
+        return jsonify({"ok": True, "wrote_to": str(path), "exists_now": path.exists()})
+    except Exception as e:
+        return jsonify({"ok": False, "error": str(e)})
