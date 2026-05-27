@@ -281,3 +281,11 @@ def test_write():
         return jsonify({"ok": True, "wrote_to": str(path), "exists_now": path.exists()})
     except Exception as e:
         return jsonify({"ok": False, "error": str(e)})
+
+@app.route('/submissions')
+def list_submissions():
+    submissions_file = Path(__file__).parent / "_shared" / "form_submissions.json"
+    if submissions_file.exists():
+        with open(submissions_file) as f:
+            return jsonify(json.load(f))
+    return jsonify([])
