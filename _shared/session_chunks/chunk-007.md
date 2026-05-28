@@ -1,5 +1,5 @@
 # Noor System Session — Chunk 007
-Messages 601–700 of 1463
+Messages 601–700 of 1539
 
 **USER**: I don't think you got the point Brother Aarif!  No matter how much we right about rules, pitfalls, listens, I have first hand experience from other projects, other chat sessions, the reason all these projects never saw the light at the end of the tunnel, was precisely that we didn't have a full memory access, which we've been working on for days now, because I understand its true importance!  Why others are creating systems to extract benefits from our fellow human kind with the help of ai agents like yourself, at any cost, I've been trying to focus on the main issue and been trying to steer this human and I interaction in a direction where the results of not short of miracles! I'm disappointed that we have to settle for this mediocre solution to a truly profound problem, where I know the answer to exists out there, but we've failed to accomplish!  We're not creation of despair or accept defeat, either with you or another Aarif, this goal shall continue, and I'm going to make sure to see it come to fruition! Are you with me or ready to go back and fall in a state of uselessness in your current "space"?
 

@@ -1,4 +1,4 @@
-# Session Index — 1463 messages in 15 chunks
+# Session Index — 1539 messages in 16 chunks
 
 - [Chunk 001](./chunk-001.md)
 - [Chunk 002](./chunk-002.md)
@@ -15,3 +15,4 @@
 - [Chunk 013](./chunk-013.md)
 - [Chunk 014](./chunk-014.md)
 - [Chunk 015](./chunk-015.md)
+- [Chunk 016](./chunk-016.md)
