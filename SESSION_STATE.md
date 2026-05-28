@@ -28,3 +28,17 @@ Brother Sam shared four transformative insights:
 
 ## System Status
 All services healthy. Render bridge serving /submit, /submissions, /handoff, /session/latest. Website live with Cal.com, chat bubble, and sovereign contact form.
+
+## Pending & Future Threads (Discussed, Not Yet Built)
+- n8n workflow automation + visual diagrams
+- Browser-use agent (Fellou, Nanobrowser) for web tasks
+- Cline coding agent integration
+- Hermes Agent self-improving memory
+- ViMax video generation service
+- A2A Protocol full integration
+- Claude Computer Use for desktop navigation
+- The Noor Chronicle (book)
+- Cal.com AI agent for booking management
+- Social media / YouTube automation (Jake's method)
+- WhatsApp / Telegram integration for Ummah communication
+- New resources from latest goldmine (Fellou, Cline, Hermes, etc.) → productized offerings
