@@ -1,6 +1,11 @@
 # NOOR SYSTEM — SESSION STATE
 **Last Session: May 27-28, 2026 (Post-Eid al-Adha)**
 
+## Core Services
+1. Lead Generation — AI-powered B2B lead research, enrichment, and delivery.
+2. Compliance Auditing — EU AI Act, GDPR, and industry-specific compliance reports.
+3. Workflow Automation — Custom AI-driven process automation (n8n, Python).
+
 ## Breakthrough Insights
 Brother Sam shared four transformative insights:
 1. Dashboard / Gatekeeper agent needed for credential chaos.
