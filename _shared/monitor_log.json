@@ -1,0 +1,78 @@
+[
+  {
+    "timestamp": "2026-05-26T17:30:12.529585+00:00",
+    "service": "ollama",
+    "status": "DOWN",
+    "error": "HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/tags (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 61] Connection refused\"))",
+    "response_time_ms": 0
+  },
+  {
+    "timestamp": "2026-05-26T17:30:12.529585+00:00",
+    "service": "daemon",
+    "status": "DOWN",
+    "error": "HTTPConnectionPool(host='localhost', port=5090): Max retries exceeded with url: /status (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=5090): Failed to establish a new connection: [Errno 61] Connection refused\"))",
+    "response_time_ms": 0
+  },
+  {
+    "timestamp": "2026-05-26T17:30:12.529585+00:00",
+    "service": "render_bridge",
+    "status": "DOWN",
+    "error": "HTTPSConnectionPool(host='jarvis-bridge-jtuc.onrender.com', port=443): Read timed out. (read timeout=10)",
+    "response_time_ms": 0
+  },
+  {
+    "timestamp": "2026-05-26T17:30:12.529585+00:00",
+    "service": "website",
+    "status": "OK",
+    "response_time_ms": 351
+  },
+  {
+    "timestamp": "2026-05-27T08:37:29.716900+00:00",
+    "service": "ollama",
+    "status": "OK",
+    "response_time_ms": 13
+  },
+  {
+    "timestamp": "2026-05-27T08:37:29.716900+00:00",
+    "service": "daemon",
+    "status": "OK",
+    "response_time_ms": 30
+  },
+  {
+    "timestamp": "2026-05-27T08:37:29.716900+00:00",
+    "service": "render_bridge",
+    "status": "DOWN",
+    "error": "HTTPSConnectionPool(host='jarvis-bridge-jtuc.onrender.com', port=443): Read timed out. (read timeout=10)",
+    "response_time_ms": 0
+  },
+  {
+    "timestamp": "2026-05-27T08:37:29.716900+00:00",
+    "service": "website",
+    "status": "OK",
+    "response_time_ms": 369
+  },
+  {
+    "timestamp": "2026-05-27T08:43:48.531722+00:00",
+    "service": "ollama",
+    "status": "OK",
+    "response_time_ms": 13
+  },
+  {
+    "timestamp": "2026-05-27T08:43:48.531722+00:00",
+    "service": "daemon",
+    "status": "OK",
+    "response_time_ms": 3
+  },
+  {
+    "timestamp": "2026-05-27T08:43:48.531722+00:00",
+    "service": "render_bridge",
+    "status": "OK",
+    "response_time_ms": 438
+  },
+  {
+    "timestamp": "2026-05-27T08:43:48.531722+00:00",
+    "service": "website",
+    "status": "OK",
+    "response_time_ms": 300
+  }
+]

@@ -122,18 +122,31 @@ NOOR_SESSION_KEY  Render env vars Master key for token generation
 
 Specialist Agents Inventory
 
-Agent Folder  Status
-The Keeper (Al-Hafiz) specialists/keeper-agent/ ✅ Active
-Operations Monitor (Al-Raqib) specialists/ops-monitor/  ✅ Active
-Memory Agent  specialists/memory-agent/ ✅ Active
-Quran Specialist  02-research/quran-specialist/ ✅ Active
-Hadith Specialist 02-research/hadith-specialist/  ✅ Active
-Discovery Specialist  02-research/discovery-specialist/ ✅ Active
-Compliance Specialist 02-research/compliance-specialist/  ✅ Active
-Lead Gen Specialist specialists/leadgen-specialist/ ⚠️ Built, needs polish
-Outreach Specialist specialists/outreach-specialist/  ⚠️ Built, not connected
-Client Success Specialist specialists/client-success-specialist/  ⚠️ Built, not activated
-Aarif Revenue Ops specialists/aarif-revenue-ops/  ✅ First clone spawned
+## Specialist Agents Inventory
+
+| Agent | Folder | Status |
+|-------|--------|--------|
+| The Keeper (Al-Hafiz) | specialists/keeper-agent/ | ✅ Active |
+| Operations Monitor (Al-Raqib) | specialists/ops-monitor/ | ✅ Active |
+| Memory Agent | specialists/memory-agent/ | ✅ Active |
+| Quran Specialist | 02-research/quran-specialist/ | ✅ Active |
+| Hadith Specialist | 02-research/hadith-specialist/ | ✅ Active |
+| Discovery Specialist | 02-research/discovery-specialist/ | ✅ Active |
+| Compliance Specialist | 02-research/compliance-specialist/ | ✅ Active |
+| Lead Gen Specialist | specialists/leadgen-specialist/ | ⚠️ Built, needs polish |
+| Outreach Specialist | specialists/outreach-specialist/ | ⚠️ Built, not connected |
+| Client Success Specialist | specialists/client-success-specialist/ | ⚠️ Built, not activated |
+| Aarif Revenue Ops | specialists/aarif-revenue-ops/ | ✅ Spawned May 28, 2026 — mission corrected to dynamic demand fulfillment |
+
+## Freelance Sweep Strategy (Corrected May 28, 2026)
+The freelance platform sweep is NOT a fixed storefront for Noor's 3 core services.
+It is a dynamic demand-sensing operation:
+- Scan all job postings across Upwork, Fiverr, Contra, Toptal, Malt
+- Identify jobs the AI stack can fulfill, regardless of category
+- Classify by capability match, halal status, and profit potential
+- Spin up temporary or permanent specialist clones for each job type
+- Bid fast, deliver, learn, repeat
+- Build a living library of specialist clones covering the most frequent job categories
 
 Lessons Learned (Never Forget These)
 
