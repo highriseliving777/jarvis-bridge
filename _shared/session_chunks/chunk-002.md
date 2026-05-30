@@ -1,5 +1,5 @@
 # Noor System Session — Chunk 002
-Messages 101–200 of 1562
+Messages 101–200 of 1598
 
 **ASSISTANT**: 9/9 gates passed, and the script ran without syntax errors. The fix worked. Now we examine the content — did the specialist actually read the Firefox Privacy Notice and detect the AI transparency?
 
