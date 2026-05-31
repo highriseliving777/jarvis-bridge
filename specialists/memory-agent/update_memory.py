@@ -17,38 +17,31 @@ def save_json(data, path):
     with open(path, "w") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-# 1. Load existing archive
 archive = load_json(ARCHIVE)
+seen = {(m.get("role"), m.get("content", "")[:100]) for m in archive}
 
-# 2. Scan for new exports (session_export*.json, other_aarif_session*.json)
-new_files = sorted(SHARED.glob("session_export*.json")) + sorted(SHARED.glob("other_aarif_session*.json"))
+new_files = sorted(SHARED.glob("session_export*.json")) + sorted(SHARED.glob("anchor_session_export*.json"))
 for fpath in new_files:
-    if fpath.name == ARCHIVE.name:
+    if fpath.name == "full_export.json":
         continue
     msgs = load_json(fpath)
     if isinstance(msgs, dict):
         msgs = msgs.get("chat_messages") or msgs.get("messages") or []
     if not msgs:
         continue
-    # tag with source filename
-    for m in msgs:
-        m["source_file"] = fpath.name
-    # deduplicate against archive
-    existing = {(m.get("role"), m.get("content", "")[:100]) for m in archive}
-    new = [m for m in msgs if (m.get("role"), m.get("content", "")[:100]) not in existing]
+    new = [m for m in msgs if (m.get("role"), m.get("content", "")[:100]) not in seen]
     if new:
         archive.extend(new)
+        for m in new:
+            seen.add((m.get("role"), m.get("content", "")[:100]))
         print(f"Added {len(new)} new messages from {fpath.name}")
-        # optional: move file to backup so it's not processed again
         (SHARED / "imported").mkdir(exist_ok=True)
         fpath.rename(SHARED / "imported" / fpath.name)
     else:
         print(f"No new messages in {fpath.name}")
 
-# 3. Save archive
 save_json(archive, ARCHIVE)
 
-# 4. Chunking
 CHUNKS_DIR.mkdir(exist_ok=True)
 total = len(archive)
 num_chunks = math.ceil(total / CHUNK_SIZE)
@@ -69,8 +62,6 @@ for i in range(num_chunks):
 (CHUNKS_DIR / "index.md").write_text("".join(index_lines))
 
 print(f"✅ Archive: {total} messages. Chunks: {num_chunks}.")
-
-# 5. Git commit & push (optional)
 subprocess.run(["git", "add", "_shared/full_export.json", "_shared/session_chunks/"], cwd=SHARED.parent)
 subprocess.run(["git", "commit", "-m", "auto: memory agent updated session chunks"], cwd=SHARED.parent)
 subprocess.run(["git", "push"], cwd=SHARED.parent)
