@@ -1,4 +1,4 @@
-# Session Index — 696 messages in 7 chunks
+# Session Index — 1610 messages in 17 chunks
 
 - [Chunk 001](./chunk-001.md)
 - [Chunk 002](./chunk-002.md)
@@ -7,3 +7,13 @@
 - [Chunk 005](./chunk-005.md)
 - [Chunk 006](./chunk-006.md)
 - [Chunk 007](./chunk-007.md)
+- [Chunk 008](./chunk-008.md)
+- [Chunk 009](./chunk-009.md)
+- [Chunk 010](./chunk-010.md)
+- [Chunk 011](./chunk-011.md)
+- [Chunk 012](./chunk-012.md)
+- [Chunk 013](./chunk-013.md)
+- [Chunk 014](./chunk-014.md)
+- [Chunk 015](./chunk-015.md)
+- [Chunk 016](./chunk-016.md)
+- [Chunk 017](./chunk-017.md)

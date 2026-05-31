@@ -1,5 +1,5 @@
 # Noor System Session — Chunk 010
-Messages 901–1000 of 1598
+Messages 901–1000 of 1610
 
 **ASSISTANT**: The new agent can't reach `localhost` because it's running on a different machine. We need to serve the context publicly via our Render bridge, just like we did with the session archive.
 
